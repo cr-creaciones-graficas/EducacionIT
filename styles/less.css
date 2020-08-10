@@ -477,3 +477,203 @@
 .border-full {
   border-radius: 1rem;
 }
+@keyframes lineal {
+  0% {
+    transform: translate(5px, 0px);
+  }
+  10% {
+    transform: translate(55px, 50px);
+  }
+  20% {
+    transform: translate(105px, 100px);
+  }
+  30% {
+    transform: translate(155px, 150px);
+  }
+  40% {
+    transform: translate(205px, 200px);
+  }
+  50% {
+    transform: translate(255px, 250px);
+  }
+  60% {
+    transform: translate(305px, 300px);
+  }
+  70% {
+    transform: translate(355px, 350px);
+  }
+  80% {
+    transform: translate(405px, 400px);
+  }
+  90% {
+    transform: translate(455px, 450px);
+  }
+  100% {
+    transform: translate(505px, 500px);
+  }
+}
+@keyframes cuadratica {
+  0% {
+    transform: translate(0px, -156.25px);
+  }
+  5% {
+    transform: translate(20px, -100px);
+  }
+  10% {
+    transform: translate(40px, -56.25px);
+  }
+  15% {
+    transform: translate(60px, -25px);
+  }
+  20% {
+    transform: translate(80px, -6.25px);
+  }
+  25% {
+    transform: translate(100px, 0px);
+  }
+  30% {
+    transform: translate(120px, -6.25px);
+  }
+  35% {
+    transform: translate(140px, -25px);
+  }
+  40% {
+    transform: translate(160px, -56.25px);
+  }
+  45% {
+    transform: translate(180px, -100px);
+  }
+  50% {
+    transform: translate(200px, -156.25px);
+  }
+  55% {
+    transform: translate(220px, -225px);
+  }
+  60% {
+    transform: translate(240px, -306.25px);
+  }
+  65% {
+    transform: translate(260px, -400px);
+  }
+  70% {
+    transform: translate(280px, -506.25px);
+  }
+  75% {
+    transform: translate(300px, -625px);
+  }
+  80% {
+    transform: translate(320px, -756.25px);
+  }
+  85% {
+    transform: translate(340px, -900px);
+  }
+  90% {
+    transform: translate(360px, -1056.25px);
+  }
+  95% {
+    transform: translate(380px, -1225px);
+  }
+  100% {
+    transform: translate(400px, -1406.25px);
+  }
+}
+@keyframes trigonometrica {
+  0% {
+    transform: translate(50px, -47.94621373px);
+  }
+  5% {
+    transform: translate(100px, -27.20105554px);
+  }
+  10% {
+    transform: translate(150px, 32.51439201px);
+  }
+  15% {
+    transform: translate(200px, 45.64726254px);
+  }
+  20% {
+    transform: translate(250px, -6.6175875px);
+  }
+  25% {
+    transform: translate(300px, -49.4015812px);
+  }
+  30% {
+    transform: translate(350px, -21.40913347px);
+  }
+  35% {
+    transform: translate(400px, 37.25565802px);
+  }
+  40% {
+    transform: translate(450px, 42.54517623px);
+  }
+  45% {
+    transform: translate(500px, -13.11874269px);
+  }
+  50% {
+    transform: translate(550px, -49.98775867px);
+  }
+  55% {
+    transform: translate(600px, -15.24053106px);
+  }
+  60% {
+    transform: translate(650px, 41.34143397px);
+  }
+  65% {
+    transform: translate(700px, 38.69453408px);
+  }
+  70% {
+    transform: translate(750px, -19.38908177px);
+  }
+  75% {
+    transform: translate(800px, -49.6944327px);
+  }
+  80% {
+    transform: translate(850px, -8.803781px);
+  }
+  85% {
+    transform: translate(900px, 44.69983318px);
+  }
+  90% {
+    transform: translate(950px, 34.16308574px);
+  }
+  95% {
+    transform: translate(1000px, -25.31828206px);
+  }
+  100% {
+    transform: translate(1050px, -48.52676418px);
+  }
+}
+.example div {
+  background-color: darkslateblue;
+  width: 100px;
+  height: 100px;
+}
+.example div:nth-child(1) {
+  animation-name: lineal;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+}
+.example div:nth-child(2) {
+  animation-name: cuadratica;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+}
+.example div:nth-child(3) {
+  animation-name: trigonometrica;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+}
+.example div:nth-child(4) {
+  animation-name: exponencial;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+}
+.example div:nth-child(5) {
+  animation-name: limite;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+}

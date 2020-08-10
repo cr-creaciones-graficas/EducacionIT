@@ -226,6 +226,82 @@
 							transform: rotateY(-30deg);
 							transform: rotateZ();
 						}
+				/*Animaciones*/
+					#animaciones .example{
+						flex-direction: column;
+					}
+					#animaciones .example div{
+						width:100px;
+						height:100px;
+						margin:.5rem;
+						border:.4rem solid white;
+						animation-name: mover;
+						animation-duration: 2s;
+						animation-delay: 1s;
+						animation-iteration-count: infinite;
+					}
+					/*Modo de Transicion*/
+						#animaciones .example div:nth-child(1){
+							animation-timing-function: ease;
+						}
+						#animaciones .example div:nth-child(2){
+							animation-timing-function: ease-in;
+						}
+						#animaciones .example div:nth-child(3){
+							animation-timing-function: ease-out;
+						}
+						#animaciones .example div:nth-child(4){
+							animation-timing-function: ease-in-out;
+						}
+						#animaciones .example div:nth-child(5){
+							animation-timing-function: linear;
+						}
+					/*Direccion de la Animacion*/
+						#animaciones section:nth-child(2) .example div{
+							animation-timing-function: ease-in;
+						}
+						#animaciones section:nth-child(2) .example div:nth-child(1){
+							animation-timing-function: ease-in;
+							animation-direction: reverse;
+						}
+						#animaciones section:nth-child(2) .example div:nth-child(1){
+							animation-direction: normal;
+						}
+						#animaciones section:nth-child(2) .example div:nth-child(2){
+							animation-direction: reverse;
+						}
+						#animaciones section:nth-child(2) .example div:nth-child(3){
+							animation-direction: alternate;
+						}
+						#animaciones section:nth-child(2) .example div:nth-child(4){
+							animation-direction: alternate-reverse;
+						}
+					/*Regla de Animacion*/
+						@keyframes mover{
+							from{
+								transform: translate(0);
+							}
+							to{
+								transform: translate(300px);
+							}
+						}
+					/*Animacion de Carga*/
+						#animaciones section:nth-child(4) .example div{
+							border-width: 5px;
+							border-color: lightblue skyblue cornflowerblue darkblue;
+							border-radius: 50%;
+							animation-name: girar;
+							animation-duration: 3s;
+							animation-delay: 1s;
+						}
+						@keyframes girar{
+							from{
+								transform: rotate(0);
+							}
+							to{
+								transform: rotate(720deg);
+							}
+						}
 		/*formulario de Contacto*/
 			#contact{
 				width:100%;
@@ -360,7 +436,38 @@
 		}
 	/*LarGe Devices (LG)*/
 		@media screen and (min-width:992px){
-			
+			.header{
+				animation-name: chocar;
+				animation-duration: 2s;
+				animation-delay: 1s;
+			}
+
+			@keyframes chocar{
+				0%{
+					transform:
+						translate(-100%)
+						skewX(15deg);
+				}
+				40%{
+					transform: 
+						translate(100%)
+						skewX(-15deg);
+				}
+				60%{
+					transform: 
+						translate(-20%)
+						skew(5deg);
+				}
+				80%{
+					transform: 
+						translate(-10%, -20px);
+				}
+				100%{
+					transform: 
+						translate(0,0)
+						skew(0);
+				}
+			}
 		}	
 	/*eXtraLarge Devices (XL)*/
 		@media screen and (min-width:1200px){
