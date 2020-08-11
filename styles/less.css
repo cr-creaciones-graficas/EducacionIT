@@ -579,67 +579,307 @@
 }
 @keyframes trigonometrica {
   0% {
-    transform: translate(50px, -47.94621373px);
+    transform: translate(50px, -95.89242747px);
+  }
+  1% {
+    transform: translate(100px, -54.40211109px);
+  }
+  2% {
+    transform: translate(150px, 65.02878402px);
+  }
+  3% {
+    transform: translate(200px, 91.29452507px);
+  }
+  4% {
+    transform: translate(250px, -13.23517501px);
   }
   5% {
-    transform: translate(100px, -27.20105554px);
+    transform: translate(300px, -98.80316241px);
+  }
+  6% {
+    transform: translate(350px, -42.81826695px);
+  }
+  7% {
+    transform: translate(400px, 74.51131605px);
+  }
+  8% {
+    transform: translate(450px, 85.09035245px);
+  }
+  9% {
+    transform: translate(500px, -26.23748537px);
   }
   10% {
-    transform: translate(150px, 32.51439201px);
+    transform: translate(550px, -99.97551734px);
+  }
+  11% {
+    transform: translate(600px, -30.48106211px);
+  }
+  12% {
+    transform: translate(650px, 82.68286795px);
+  }
+  13% {
+    transform: translate(700px, 77.38906816px);
+  }
+  14% {
+    transform: translate(750px, -38.77816354px);
   }
   15% {
-    transform: translate(200px, 45.64726254px);
+    transform: translate(800px, -99.38886539px);
+  }
+  16% {
+    transform: translate(850px, -17.60756199px);
+  }
+  17% {
+    transform: translate(900px, 89.39966636px);
+  }
+  18% {
+    transform: translate(950px, 68.32617147px);
+  }
+  19% {
+    transform: translate(1000px, -50.63656411px);
   }
   20% {
-    transform: translate(250px, -6.6175875px);
+    transform: translate(1050px, -97.05352835px);
+  }
+  21% {
+    transform: translate(1100px, -4.42426781px);
+  }
+  22% {
+    transform: translate(1150px, 94.5435334px);
+  }
+  23% {
+    transform: translate(1200px, 58.06111842px);
+  }
+  24% {
+    transform: translate(1250px, -61.60404592px);
   }
   25% {
-    transform: translate(300px, -49.4015812px);
+    transform: translate(1300px, -93.01059502px);
+  }
+  26% {
+    transform: translate(1350px, 8.83686861px);
+  }
+  27% {
+    transform: translate(1400px, 98.02396594px);
+  }
+  28% {
+    transform: translate(1450px, 46.7745162px);
+  }
+  29% {
+    transform: translate(1500px, -71.48764296px);
   }
   30% {
-    transform: translate(350px, -21.40913347px);
+    transform: translate(1550px, -87.33119828px);
+  }
+  31% {
+    transform: translate(1600px, 21.94252584px);
+  }
+  32% {
+    transform: translate(1650px, 99.77972794px);
+  }
+  33% {
+    transform: translate(1700px, 34.66494555px);
+  }
+  34% {
+    transform: translate(1750px, -80.11345952px);
   }
   35% {
-    transform: translate(400px, 37.25565802px);
+    transform: translate(1800px, -80.11526357px);
+  }
+  36% {
+    transform: translate(1850px, 34.66211801px);
+  }
+  37% {
+    transform: translate(1900px, 99.77992787px);
+  }
+  38% {
+    transform: translate(1950px, 21.9454668px);
+  }
+  39% {
+    transform: translate(2000px, -87.32972972px);
   }
   40% {
-    transform: translate(450px, 42.54517623px);
+    transform: translate(2050px, -71.48975078px);
+  }
+  41% {
+    transform: translate(2100px, 46.77185183px);
+  }
+  42% {
+    transform: translate(2150px, 98.0245622px);
+  }
+  43% {
+    transform: translate(2200px, 8.83987125px);
+  }
+  44% {
+    transform: translate(2250px, -93.0094878px);
   }
   45% {
-    transform: translate(500px, -13.11874269px);
+    transform: translate(2300px, -61.60642041px);
+  }
+  46% {
+    transform: translate(2350px, 58.0586641px);
+  }
+  47% {
+    transform: translate(2400px, 94.54451549px);
+  }
+  48% {
+    transform: translate(2450px, -4.42125632px);
+  }
+  49% {
+    transform: translate(2500px, -97.05280195px);
   }
   50% {
-    transform: translate(550px, -49.98775867px);
+    transform: translate(2550px, -50.63916349px);
+  }
+  51% {
+    transform: translate(2600px, 68.32397038px);
+  }
+  52% {
+    transform: translate(2650px, 89.40101701px);
+  }
+  53% {
+    transform: translate(2700px, -17.60459465px);
+  }
+  54% {
+    transform: translate(2750px, -99.38853259px);
   }
   55% {
-    transform: translate(600px, -15.24053106px);
+    transform: translate(2800px, -38.78094208px);
+  }
+  56% {
+    transform: translate(2850px, 77.38715902px);
+  }
+  57% {
+    transform: translate(2900px, 82.68456339px);
+  }
+  58% {
+    transform: translate(2950px, -30.47819111px);
+  }
+  59% {
+    transform: translate(3000px, -99.97558399px);
   }
   60% {
-    transform: translate(650px, 41.34143397px);
+    transform: translate(3050px, -26.24039419px);
+  }
+  61% {
+    transform: translate(3100px, 85.08876887px);
+  }
+  62% {
+    transform: translate(3150px, 74.51332646px);
+  }
+  63% {
+    transform: translate(3200px, -42.81554281px);
+  }
+  64% {
+    transform: translate(3250px, -98.80362735px);
   }
   65% {
-    transform: translate(700px, 38.69453408px);
+    transform: translate(3300px, -13.23816292px);
+  }
+  66% {
+    transform: translate(3350px, 91.29329489px);
+  }
+  67% {
+    transform: translate(3400px, 65.03107402px);
+  }
+  68% {
+    transform: translate(3450px, -54.39958174px);
+  }
+  69% {
+    transform: translate(3500px, -95.8932825px);
   }
   70% {
-    transform: translate(750px, -19.38908177px);
+    transform: translate(3550px, -0.00301444px);
+  }
+  71% {
+    transform: translate(3600px, 95.89157234px);
+  }
+  72% {
+    transform: translate(3650px, 54.40464039px);
+  }
+  73% {
+    transform: translate(3700px, -65.02649396px);
+  }
+  74% {
+    transform: translate(3750px, -91.29575517px);
   }
   75% {
-    transform: translate(800px, -49.6944327px);
+    transform: translate(3800px, 13.23218709px);
+  }
+  76% {
+    transform: translate(3850px, 98.80269738px);
+  }
+  77% {
+    transform: translate(3900px, 42.82099105px);
+  }
+  78% {
+    transform: translate(3950px, -74.50930557px);
+  }
+  79% {
+    transform: translate(4000px, -85.09193596px);
   }
   80% {
-    transform: translate(850px, -8.803781px);
+    transform: translate(4050px, 26.23457653px);
+  }
+  81% {
+    transform: translate(4100px, 99.97545059px);
+  }
+  82% {
+    transform: translate(4150px, 30.48393308px);
+  }
+  83% {
+    transform: translate(4200px, -82.68117243px);
+  }
+  84% {
+    transform: translate(4250px, -77.39097722px);
   }
   85% {
-    transform: translate(900px, 44.69983318px);
+    transform: translate(4300px, 38.77538496px);
+  }
+  86% {
+    transform: translate(4350px, 99.3891981px);
+  }
+  87% {
+    transform: translate(4400px, 17.61052933px);
+  }
+  88% {
+    transform: translate(4450px, -89.39831563px);
+  }
+  89% {
+    transform: translate(4500px, -68.3283725px);
   }
   90% {
-    transform: translate(950px, 34.16308574px);
+    transform: translate(4550px, 50.63396468px);
+  }
+  91% {
+    transform: translate(4600px, 97.05425467px);
+  }
+  92% {
+    transform: translate(4650px, 4.42727929px);
+  }
+  93% {
+    transform: translate(4700px, -94.54255123px);
+  }
+  94% {
+    transform: translate(4750px, -58.06357269px);
   }
   95% {
-    transform: translate(1000px, -25.31828206px);
+    transform: translate(4800px, 61.60167138px);
+  }
+  96% {
+    transform: translate(4850px, 93.01170215px);
+  }
+  97% {
+    transform: translate(4900px, -8.83386596px);
+  }
+  98% {
+    transform: translate(4950px, -98.0233696px);
+  }
+  99% {
+    transform: translate(5000px, -46.77718053px);
   }
   100% {
-    transform: translate(1050px, -48.52676418px);
+    transform: translate(5050px, 71.48553508px);
   }
 }
 .example div {
@@ -676,4 +916,144 @@
   animation-duration: 3s;
   animation-delay: 1s;
   animation-iteration-count: infinite;
+}
+nav label {
+  z-index: 9999;
+  width: 1rem;
+  line-height: 1rem;
+  background-color: lightgrey;
+  box-shadow: 0 0 5px;
+}
+nav input[type="checkbox"]:checked + .menu {
+  animation-name: abrirMenu;
+  animation-duration: 2s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+nav input[type="checkbox"]:checked + .menu a {
+  position: relative;
+  color: #ccc;
+  text-decoration: none;
+}
+nav input[type="checkbox"]:checked + .menu a:nth-child(1) {
+  animation-name: mostrarLink;
+  animation-duration: 2s;
+  animation-fill-mode: fowards:;
+  animation-delay: 0s;
+}
+nav input[type="checkbox"]:checked + .menu a:nth-child(2) {
+  animation-name: mostrarLink;
+  animation-duration: 2s;
+  animation-fill-mode: fowards:;
+  animation-delay: 0.5s;
+}
+nav input[type="checkbox"]:checked + .menu a:nth-child(3) {
+  animation-name: mostrarLink;
+  animation-duration: 2s;
+  animation-fill-mode: fowards:;
+  animation-delay: 1s;
+}
+nav input[type="checkbox"]:checked + .menu a:nth-child(4) {
+  animation-name: mostrarLink;
+  animation-duration: 2s;
+  animation-fill-mode: fowards:;
+  animation-delay: 1.5s;
+}
+nav input[type="checkbox"]:checked + .menu a:nth-child(5) {
+  animation-name: mostrarLink;
+  animation-duration: 2s;
+  animation-fill-mode: fowards:;
+  animation-delay: 2s;
+}
+@keyframes abrirMenu {
+  from {
+    width: 0;
+    color: transparent;
+    background-color: transparent;
+  }
+  to {
+    width: 50vw;
+    /*ViewHeight ViewWidth Min-View Max-View*/
+    min-width: 300px;
+    max-width: 900px;
+    color: #ccc;
+    background-color: darkslateblue;
+  }
+}
+@keyframes mostrarLink {
+  0% {
+    left: -100px;
+    padding-left: 0%;
+  }
+  10% {
+    left: -90px;
+    padding-left: 5%;
+  }
+  20% {
+    left: -80px;
+    padding-left: 10%;
+  }
+  30% {
+    left: -70px;
+    padding-left: 15%;
+  }
+  40% {
+    left: -60px;
+    padding-left: 20%;
+  }
+  50% {
+    left: -50px;
+    padding-left: 25%;
+  }
+  60% {
+    left: -40px;
+    padding-left: 30%;
+  }
+  70% {
+    left: -30px;
+    padding-left: 35%;
+  }
+  80% {
+    left: -20px;
+    padding-left: 40%;
+  }
+  90% {
+    left: -10px;
+    padding-left: 45%;
+  }
+  100% {
+    left: 0px;
+    padding-left: 50%;
+  }
+}
+.menu {
+  list-style: none;
+  overflow: hidden;
+  width: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+/*Empieza con*/
+a[href^="https:"] {
+  color: lightgrey;
+  background-color: darkblue;
+}
+/*Termina con*/
+a[href$=".html"] {
+  color: darkblue;
+  background-color: lightgrey;
+}
+/*Contiene*/
+a[href*="whatsapp"] {
+  color: white;
+  background-color: limegreen;
+}
+/*Contiene exactamente*/
+a[title~="https://github.com"] {
+  color: white;
+  background-color: darkslateblue;
 }

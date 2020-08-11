@@ -143,10 +143,10 @@
 		transform: 
 			translate(
 			@x * 10px,
-			sin(@x) * 50px
+			sin(@x) * 100px
 			);
 	}
-	.trigonometrica(@x + 5px, @i + 5);
+	.trigonometrica(@x + 5px, @i + 1);
 }
 
 @keyframes trigonometrica{
@@ -176,4 +176,93 @@
 		}
 		.hijos(@anim);
 	}
+}
+
+nav{
+	label{
+		z-index: 9999;
+		width:1rem;
+		line-height: 1rem;
+		background-color:lightgrey;
+		box-shadow: 0 0 5px;
+	}
+	input[type="checkbox"]{
+		
+		&:checked + .menu{
+			animation-name:abrirMenu;
+			animation-duration: 2s;
+			animation-direction: normal;
+			animation-fill-mode: forwards;
+			a{
+				position:relative;
+				color:#ccc;
+				text-decoration: none;		
+				.delay (@x, @i:1) when (@i <= 5){
+					&:nth-child(@{i}){
+						animation-name:mostrarLink;
+						animation-duration:2s;
+						animation-fill-mode: fowards:;
+						animation-delay: @x;
+					}
+					.delay(@x + .5s , @i + 1);
+				}
+				.delay(0s);	
+			}	
+		}
+	}
+}
+	@keyframes abrirMenu{
+		from{
+			width:0;
+			color:transparent;
+			background-color: transparent;
+		}
+		to{
+			width:50vw; /*ViewHeight ViewWidth Min-View Max-View*/
+			min-width: 300px;
+			max-width: 900px;
+			color:#ccc;
+			background-color:darkslateblue;
+		}
+	}
+	@keyframes mostrarLink{
+		.traslacion(@x, @i:0%) when (@i <= 100%){
+			@{i}{
+				left:@x;
+				padding-left: @i * .5px;
+			}
+			.traslacion(@x + 10, @i + 10);
+		}
+		.traslacion(-100px);
+	}
+	.menu{
+		list-style: none;
+		overflow: hidden;
+		width:0;
+		position:fixed;
+		top:0;
+		bottom:0;
+		left:0;
+		margin:0;
+		padding:0;
+	}
+/*Empieza con*/
+a[href^="https:"]{
+	color:lightgrey;
+	background-color:darkblue;
+}
+/*Termina con*/
+a[href$="com.ar"]{
+	color:darkblue;
+	background-color:lightgrey;
+}
+/*Contiene*/
+a[href*="whatsapp"]{
+	color:white;
+	background-color:limegreen;
+}
+/*Contiene exactamente*/
+a[title~="https://github.com"]{
+	color:white;
+	background-color: darkslateblue;
 }
