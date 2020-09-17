@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Responsive Web Design</title>
+</head>
+<body>
+	<header id="header">
+		<div class="header">
+			<h1>Web Design</h1>
+			<p>Responsive &amp; Bootstrap</p>
+		</div>
+		<nav>
+			<button id="menu">&equiv;</button>
+			<ul class="menu">
+				<li class="active"><a href="#">Inicio</a></li>
+				<li><a href="about.html">Acerca de</a></li>
+				<li><a href="gallery.html">Galeria</a></li>
+				<li><a href="#contact">Contacto</a></li>
+				<li><a href="https://github.com/c215714n/educacionit/tree/responsive-jueves-19hs" target="_blank">GitHub</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<article>
+			<header class="header">
+				<h1>Clase 1: Tipos de Diseño</h1>
+			</header>
+			<p></p>
+			<section>
+				<header>
+					<h1>Tema 1: Fluid Web Design</h1>
+				</header>
+				<p>
+					<strong>Utiliza porcentajes (%) y em (Ancho de la letra M) para definir el tamaño de los elementos mostrados en pantalla</strong>. Uno de los problemas principales de este tipo de diseño es que funciona perfecto para tamaños intermedios, pero <em> en pantallas pequeñas o pantallas grandes se pierde mucho del diseño</em> ya que en el primer caso la informacion esta compactada y en el ultimo totalmente estirada.
+				</p>
+				<p style="min-width: 200px; max-width: 600px;">
+					Una solucion al problema del <strong>Fluid Web Design</strong> fue lo que se conoce como <em>Liquid Web Design</em>, el cual establece limites en los tamaños de los elementos mediante atributos como <em>min-width:200px; max-width:600px;</em>, pero el problema que genera esto son <strong> la gran cantidad de espacios intermedios obtenidos al trabajar en grandes pantallas y que los elementos se salen de la caja en pequeñas pantallas.</strong>
+				</p>
+			</section>
+			<section>
+				<header>
+					<h1>Tema 2: Adaptive Web Design</h1>
+				</header>
+				<p></p>
+			</section>
+			<section>
+				<header>
+					<h1>Tema 3: Responsive Web Design</h1>
+				</header>
+				<p></p>
+			</section>
+		</article>
+	</main>
+	<footer id="footer">
+		<form action="" id="contact">
+			<h2>Realice su Consulta</h2>
+			<label for="nombre">nombre</label>
+			<input 
+				name="nombre"
+				id="nombre" 
+				type="text"
+				placeholder="Ingrese su Nombre" 
+				required />
+			<label for="tel">telefono</label>
+			<input 
+				name="tel"
+				id="tel" 
+				type="tel"
+				placeholder="Ingrese su Telefono" 
+				required />
+			<label for="email">correo</label>
+			<input 
+				name="email"
+				id="email" 
+				placeholder="Ingrese su Correo" 
+				type="email"
+				required />
+			<label for="consulta">consulta</label>
+			<textarea 
+				name="consulta" 
+				id="consulta"
+				minlength="10"
+				maxlength="200" 
+				placeholder="Ingrese su Consulta" 
+				required></textarea>
+			<input type="submit" value="enviar">
+		</form>
+		<div class="social">
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""></a>
+		</div>
+		<p>
+			&copy; Todos los derechos reservados |
+			<a href="#"> Cristian Racedo </a>
+			&amp; Compañia.
+		</p>
+	</footer>
+</body>
+</html>
