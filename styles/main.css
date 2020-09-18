@@ -1,3 +1,55 @@
 /*Responsive Web Design*/
+	/*Reglas Generales*/
+		@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;1,100;1,700&family=Open+Sans+Condensed:ital,wght@0,700;1,300&family=Raleway:ital,wght@0,400;0,800;1,500&display=swap');
 
+		*{
+			font-family: Lato, Raleway, Open Sans Condensed, sans-serif;
+			box-sizing: border-box;
+				/*Content-Box: Final-Width (width + padding + border)*/
+				/*Border-Box: Final-Width = width (width - padding - border)*/
+		}
+	/*Encabezado y Pie de Pagina*/
+		#header,
+		#footer{
+			padding:2rem;
+			color:#ccc; /*RRGGBB 00-FF*/
+			background-color:#248;
+		}
+	/*Navegacion*/
+		nav{
+			background-color: #36c;
+		}
+		#menu{
+			width: 2.5rem;
+			line-height: 2rem;
+			outline: none;
+			border: 2px solid #ddd;
+			font-size: 2rem;
+			color:#ddd;
+			background-color: transparent;
+		}
+		.menu{
+			height: 0;
+			overflow: hidden;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.menu a{
+			display: block;
+			padding:.2rem 3rem;
+			color:#ddd;
+			text-decoration: none;
+		}
+		.menu a:hover{
+			background-color: #124;
+		}
+		.openMenu{
+			height: auto;
+		}
+	/*Formulario de Contacto*/
+		#contact input,
+		#contact textarea{
+			display: block;
+		}
 /*Autor: Cristian Racedo*/

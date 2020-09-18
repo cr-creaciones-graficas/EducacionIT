@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Responsive Web Design</title>
+	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 	<header id="header">
@@ -27,7 +28,28 @@
 			<header class="header">
 				<h1>Clase 1: Tipos de Diseño</h1>
 			</header>
-			<p></p>
+			<ul>
+				<li>Tipos de Diseño
+					<ul>
+						<li>Fluid
+							<ul>
+								<li>Liquid</li>
+							</ul>
+						</li>
+						<li>Adaptive
+							<ul>
+								<li>Breakpoint</li>
+							</ul>
+						</li>
+						<li>Responsive
+							<ul>
+								<li>Mobile First</li>
+								<li>Content First</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
 			<section>
 				<header>
 					<h1>Tema 1: Fluid Web Design</h1>
@@ -35,7 +57,7 @@
 				<p>
 					<strong>Utiliza porcentajes (%) y em (Ancho de la letra M) para definir el tamaño de los elementos mostrados en pantalla</strong>. Uno de los problemas principales de este tipo de diseño es que funciona perfecto para tamaños intermedios, pero <em> en pantallas pequeñas o pantallas grandes se pierde mucho del diseño</em> ya que en el primer caso la informacion esta compactada y en el ultimo totalmente estirada.
 				</p>
-				<p style="min-width: 200px; max-width: 600px;">
+				<p>
 					Una solucion al problema del <strong>Fluid Web Design</strong> fue lo que se conoce como <em>Liquid Web Design</em>, el cual establece limites en los tamaños de los elementos mediante atributos como <em>min-width:200px; max-width:600px;</em>, pero el problema que genera esto son <strong> la gran cantidad de espacios intermedios obtenidos al trabajar en grandes pantallas y que los elementos se salen de la caja en pequeñas pantallas.</strong>
 				</p>
 			</section>
@@ -43,13 +65,25 @@
 				<header>
 					<h1>Tema 2: Adaptive Web Design</h1>
 				</header>
-				<p></p>
+				<p>
+					<strong>Utiliza puntos de quiebre (breakpoints) para generar diferentes vistas del contenido y como medida principal se implementan los pixeles (px).</strong> El inconveniente con este tipo de diseño es que se comienza a trabajar desde la vista de escritorio y a partir de ahi, se generan <em>las vistas resumidas de contenido para pantallas pequeñas;</em> si bien este tipo de diseño no esta pensado para todos los tamaños de pantalla, se adapta segun determinados parametros generales dando resultado atractivos.
+				</p>
+				<p>
+					El inconveniente principal con este tipo de diseño radica en la duplicidad de contenidos, ya que se generan paginas alternas para determinados tamaños de pantallas y por lo tanto se <strong>pierden conceptos del diseño</strong> al no haber sido pensadas para ese tipo de dispositivos. Otra problematica se encuentra cuando podemos cambiar entre las vistas, accediendo a paginas que no fueron pensadas para la pantalla actual.
+				</p>
 			</section>
 			<section>
 				<header>
 					<h1>Tema 3: Responsive Web Design</h1>
 				</header>
-				<p></p>
+				<p>
+					Si bien, este tipo de diseño al igual que el anterior utiliza puntos de quiebre (breakpoints), a diferencia de este
+					<strong> implementa porcentajes (%) para los tamaños de los elementos, con maximos y minimos, segun cada cambio de tamaño.</strong> La ventaja principal de este tipo de diseño radica en el concepto <em>One Web for All</em> que consiste en diseñar la pagina desde el aspecto mas basico <strong>(Mobile First)</strong> y a partir de este comenzar a posicionar los elementos acorde a los diferentes breakpoints.
+				</p>
+				<p>
+					Este diseño recibe su nombre a partir de una publicacion realizada por <strong>Ethan Marcotte</strong> en el sitio <a href="https://alistapart.com/article/responsive-web-design/">A List Apart</a> donde meciona las caracteristicas que debe tener un sitio web para convertirse en Responsive.
+					Entre estas caracteristicas encontramos <em>Multimedia flexible, un sistema de grilla y el desarrollo del contenido desde un comienzo</em> tambien conocido como <strong>Content First</strong>
+				</p>
 			</section>
 		</article>
 	</main>
@@ -98,5 +132,6 @@
 			&amp; Compañia.
 		</p>
 	</footer>
+	<script src="scripts/main.js"></script>
 </body>
 </html>
