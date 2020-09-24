@@ -1,4 +1,5 @@
 /*Responsive Web Design*/
+/*Mobile First (Content First)*/
 	/*Reglas Generales*/
 		@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;1,100;1,700&family=Open+Sans+Condensed:ital,wght@0,700;1,300&family=Raleway:ital,wght@0,400;0,800;1,500&display=swap');
 
@@ -14,6 +15,12 @@
 			padding:2rem;
 			color:#ccc; /*RRGGBB 00-FF*/
 			background-color:#248;
+		}
+		.header h1,
+		.header p{
+			margin:0;
+			line-height: 1.5rem;
+			font-variant: small-caps;
 		}
 	/*Navegacion*/
 		nav{
@@ -47,9 +54,85 @@
 		.openMenu{
 			height: auto;
 		}
+	/*Contenido Principal*/
+		main{
+			padding:2rem;
+		}
 	/*Formulario de Contacto*/
+		#contact{
+			display:flex;
+			flex-direction: column;
+			margin:auto;
+		}
+		#contact label{
+			height: 0;
+			margin-top: .5rem;
+		}
 		#contact input,
 		#contact textarea{
-			display: block;
+			outline:none;
+			padding:.5rem;
+			line-height: 1.5rem;
 		}
+		#contact textarea{
+			resize: none;
+			height:6rem;
+		}
+		#contact input[type="submit"]{
+			cursor: pointer;
+			font-size: 1.2rem;
+			font-weight: bold;
+			font-variant:small-caps;
+			margin-left: calc(100% - 5rem);
+			width:5rem;
+			margin-top: .5rem;
+			border: 2px solid #ccc;
+			padding:.1rem;
+			color:#ccc;
+			background-color: transparent;
+		}
+		#contact input[type="submit"]:hover{
+			background-color: #124;
+		}
+/*Small Devices (SM) - Celulares*/
+	@media screen and (min-width: 576px) {
+		/*Formulario de Contacto*/
+			#contact{
+				max-width: 540px;
+			}
+	}
+/*Medium Devices (MD) - Tablets, celulares(landscape)*/
+	@media screen and (min-width: 768px){
+		/*Formulario de Contacto*/
+			#contact{
+				max-width: 720px;
+			}
+			#contact label{
+				height: auto;
+				font-variant: small-caps;
+			}
+	}
+/*Large Devices (LG) - tablets(landscape), desktop*/
+	@media screen and (min-width: 992px){
+		/*Navegacion*/
+			#menu{
+				display: none;
+			}
+			.menu{
+				display: flex;
+				justify-content: center;
+				height: auto;
+			}
+			.menu a{
+				padding:.5rem 1rem;
+			}
+		/*Formulario de Contacto*/			
+			#contact{
+				max-width: 960px;
+			}
+	}
+/*Extra Large (XL) - desktop, smartTV*/
+	@media screen and (min-width: 1200px){
+
+	}
 /*Autor: Cristian Racedo*/

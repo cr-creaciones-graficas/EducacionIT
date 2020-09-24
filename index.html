@@ -86,6 +86,57 @@
 				</p>
 			</section>
 		</article>
+		<article>
+			<header class="header">
+				<h1>Clase 2: Grupos de Medidas</h1>
+			</header>
+			<p>
+				
+			</p>
+			<section>
+				<header>
+					<h1>Tema 1: Medidas Relativas</h1>
+				</header>
+				<p>
+					Son aquellas que <strong> dependen del elemento contendor </strong> para poder definir su tamaño, es decir, son <em>relativas a la etiqueta padre</em>. Entre las medidas mas utilizadas encontramos porcentaje(%) y em, la primera aplicada principalmente para los bloques de contenido y la otra para las tipografias. Por lo tanto, una etiqueta con <em>width:80%</em> no medira lo mismo, si se encuentra dentro de otra que posea un tamaño de 2000px, a otra que posea 1000px.
+				</p>
+				<ul>
+					<li><strong>%:</strong> Porcentaje del tamaño del elemento contenedor</li>
+					<li><strong>em:</strong> Ancho de la letra "M" de la etiqueta padre</li>
+					<li><strong>ex:</strong> Alto de la letra "x" del elemento padre</li>
+					<li><strong>ch:</strong> Ancho del numero "0" de la etiqueta contenedora</li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<h1>Tema 2: Medidas Absolutas</h1>
+				</header>
+				<p>
+					Son aquellas que <strong>independientemente del contexto, siempre van a representar un valor universal.</strong> Si bien, no se suelen utilizar demasiado, la medida de este tipo que mas se implementa son los pixeles(px), que <em>se consideran una medida hibrida</em> ya que dependen de la resolucion para reflejar un tamaño final, pero la cantidad de puntos en pantalla, siempre es la misma.
+				</p>
+				<ul>
+					<li><strong>cm:</strong> medida base 1/100m</li>
+					<li><strong>in:</strong> medida 2.54cm</li>
+					<li><strong>pt:</strong> fuente 1/72in</li>
+					<li><strong>px:</strong> puntos en pantalla (resolucion)</li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<h1>Tema 3: Medidas Flexibles</h1>
+				</header>
+				<p>
+					Son aquellas que <strong>utilizan como referente el tamaño del area visible de la ventana del navegador(VIEWPORT)</strong>. Si bien se suelen considerar relativas, a diferencia de la mayoria estas No dependen del contenedor, sino que dependen de la misma ventana.
+					Cabe destacar que no necesariamente el tamaño de la ventaña y la escala de la pagina deben ser las mismas.
+				</p>
+				<ul>
+					<li><strong>vw:</strong>ancho del viewport</li>
+					<li><strong>vh:</strong>alto del viewport</li>
+					<li><strong>vmin:</strong>medida mas pequeña del viewport</li>
+					<li><strong>vmax:</strong>medida mas grande del viewport</li>
+				</ul>
+			</section>
+		</article>
 	</main>
 	<footer id="footer">
 		<form action="" id="contact">
