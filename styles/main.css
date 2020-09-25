@@ -58,6 +58,68 @@
 		main{
 			padding:2rem;
 		}
+		article, section{
+			margin:auto;
+			padding: .5rem 0;
+			/*border-bottom: 2px solid #248;*/
+		}
+		article .header,
+		article > ul{
+			width:100%;
+		}
+		.example{
+			border-radius: .5rem;
+			padding:1rem;
+			text-align: center;
+			background-color: #48F;
+		}
+		/*Grupos de medidas*/
+			.relative img{
+				width:100%;
+			}
+			.absolute img{
+				width:300px;
+			}
+			.flex img{
+				width:60vw;
+			}
+		/*Multimedia flexible*/
+			.video{
+				overflow: hidden;
+				background-color: #012;
+				position: relative;
+				padding:0;
+				border:0;
+			}
+			.video video{
+				position:absolute;
+				top:0;
+				left:0;
+				width:100%;
+			}
+			.video p{
+				position: absolute;
+				bottom: -2000px;
+				left: 0;
+				width:100%;
+				margin: 0;
+				transition: all 1s ease 1s;
+			}
+			.video:hover p{
+				padding:.5rem 1rem 3.5rem;
+				bottom:0;
+				background-color: rgba(200,200,200,.5);
+			}
+			.aspect4by3{
+				/*Ancho = 1.33(alto)*/
+				/*Alto = 75%(ancho)*/
+				padding-bottom: 75%;
+			}
+			.aspect16by9{
+				/*Ancho = 1.78(alto)*/
+				/*Alto = 56.25(ancho)*/
+				padding-bottom: 56.25%;
+			}
 	/*Formulario de Contacto*/
 		#contact{
 			display:flex;
@@ -96,6 +158,10 @@
 		}
 /*Small Devices (SM) - Celulares*/
 	@media screen and (min-width: 576px) {
+		/*Contenido Principal*/
+			article{
+				max-width: 540px;
+			}
 		/*Formulario de Contacto*/
 			#contact{
 				max-width: 540px;
@@ -103,6 +169,19 @@
 	}
 /*Medium Devices (MD) - Tablets, celulares(landscape)*/
 	@media screen and (min-width: 768px){
+		/*Contenido Principal*/
+			article{
+				display: flex;
+				flex-wrap: wrap;
+				max-width: 720px;
+			}
+			.relative img{
+				width:50%;
+				max-width: 300px;
+			}
+			.flex img{
+				max-width: 300px;
+			}
 		/*Formulario de Contacto*/
 			#contact{
 				max-width: 720px;
@@ -125,6 +204,27 @@
 			}
 			.menu a{
 				padding:.5rem 1rem;
+			}
+		/*Contenido Principal*/
+			article{
+				max-width: 960px;
+			}
+			section{
+				width:100%;
+				max-width: 450px;
+				padding:.5rem;
+			}
+			section:last-child{
+				max-width: 920px
+			}
+			.relative img{
+				max-width: 200px;
+			}
+			.absolute img{
+				width:200px;
+			}
+			.flex img{
+				max-width: 200px;
 			}
 		/*Formulario de Contacto*/			
 			#contact{
