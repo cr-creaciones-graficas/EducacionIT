@@ -1,0 +1,28 @@
+Staging Area:
+
+	Es el area de control de cambios,
+	tambien conocida como Index,
+	donde se evaluan las modificaciones
+	y adiciones realizadar en el 
+	Working Directory.
+
+Comandos:
+	Utilizaremos la linea de comandos para 
+	agregar o remover del area de verificacion 
+	los elementos a los que querramos hacerle 
+	seguimiento o querramos ignorar.
+
+Lista de Comandos:
+GIT ADD		"Agregar archivos al Stage"
+	git add <file>	=> agrega un archivo especifico
+	git add <folder/> => agrega el contenido de una carpeta
+	git add *.formato => agrega todos los archivos con X formato
+	git add . => agrega todo el contenido del directorio actual
+GIT RM		"Remueve elementos del Stage"
+	git rm --cached <file> => remueve del stage el elemento seleccionado
+				siempre y cuando no existan commits previos
+GIT reset	"Reestablece elementos de Index"
+
+	git reset HEAD -- <file> => remueve del stage el elemento seleccionado
+					siempre y cuando exista un commit previo.
+
