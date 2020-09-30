@@ -1,0 +1,25 @@
+Local Repository:
+	
+	Area de almacenamiento de Cambios (Store)
+	donde se guardan las capturas (Snapshots)
+	del codigo que se encuentre en el INDEX
+	y se generar los BLOBS (Binary Object File).
+	Luego cuando debemos corroborar los cambios
+	realizados, se compara el HEAD (ubicacion actual)
+	con el Commit indicado.
+
+Comandos:
+	
+	Para poder ejecutar los comando que acceden
+	al Repositorio debemos, previamente haber
+	cargado el contenido al Staging Area.
+
+Lista de Comandos:
+
+git commit	"Guardamos los cambios en el historial"
+	git commit -m "genera el mensaje sin abrir la consola"
+git diff	"evalua las modificaciones realizadas"
+	git diff <hash> => compara la cabecera actual con el commit indicado
+	git diff HEAD <ancestro> => compara la cabecera con el ancestro especifico
+	^ => commit padre
+	~n° => commit anterior
