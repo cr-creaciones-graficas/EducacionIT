@@ -1,0 +1,23 @@
+Working Directory:
+
+	se llama asi a la carpeta 
+	donde se encuentra nuestro proyecto.
+	En la cual realizamos los cambios
+	que luego queremos que se registren
+
+Comandos:
+	Normalmente no es necesario el uso
+	de la linea de comando, pero de ser asi
+	podemos utilizar cualquiera de los
+	comandos permitidos por la consola
+
+Lista de Comandos:
+CD	"Check Directory"
+	cd <folder> => abre una carpeta
+	cd .. => Sube un nivel (carpeta anterior)
+	cd \ => vuelve a la ruta Raiz (C:)	
+MKDIR	"Make Directory"
+	mkdir <folder> => crear una o varias carpetas
+
+GIT:
+	git init	Inicializar un Repositorio
