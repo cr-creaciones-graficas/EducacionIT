@@ -117,8 +117,13 @@
 			}
 			.aspect16by9{
 				/*Ancho = 1.78(alto)*/
-				/*Alto = 56.25(ancho)*/
+				/*Alto = 56.25%(ancho)*/
 				padding-bottom: 56.25%;
+			}
+			.aspect16by10{
+				/*Ancho = 1.6(alto)*/
+				/*Alto = 62.5%()ancho*/
+				padding-bottom:62.5%;
 			}
 	/*Formulario de Contacto*/
 		#contact{
