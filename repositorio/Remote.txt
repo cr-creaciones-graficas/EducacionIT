@@ -1,0 +1,15 @@
+REMOTE REPOSITORY
+	"Es un repositorio alojado en un servidor u otra
+	computadora distinta a la que estamos utilizando"
+
+COMANDOS
+	"Como todos los comandos de GIT, estan precedidos
+	por dicha palabra y estos en particular, nos van
+	a permitir agregar respositorios, eliminarlos, etc."
+
+LISTA DE COMANDOS:
+
+git remote	"lista los repositorios remotos"
+git remote -v	"muestra las direcciones de los repositorios remotos"
+	git remote add "ALIAS" <url> => "agrega un repositorio remoto"
+	git remote remove "ALIAS" => "elimina un repositorio remoto"
