@@ -232,28 +232,28 @@
 		<form action="" id="contact">
 			<h2>Realice su Consulta</h2>
 			<label for="nombre">nombre</label>
-			<input 
+			<input class="form-control"
 				name="nombre"
 				id="nombre" 
 				type="text"
 				placeholder="Ingrese su Nombre" 
 				required />
 			<label for="tel">telefono</label>
-			<input 
+			<input class="form-control"
 				name="tel"
 				id="tel" 
 				type="tel"
 				placeholder="Ingrese su Telefono" 
 				required />
 			<label for="email">correo</label>
-			<input 
+			<input class="form-control"
 				name="email"
 				id="email" 
 				placeholder="Ingrese su Correo" 
 				type="email"
 				required />
 			<label for="consulta">consulta</label>
-			<textarea 
+			<textarea class="form-control"
 				name="consulta" 
 				id="consulta"
 				minlength="10"
@@ -275,6 +275,10 @@
 	</footer>
 	<script src="scripts/main.js"></script>
 	<!-- JQuery / Popper -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"> //jquery
+		</script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"> //popperjs
+		</script>
 	<!-- Bootstrap -->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
