@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bootstrap</title>
+	<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- styles.css -->
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+		<a class="navbar-brand" href="#">Bootstrap</a>
+		<button class="navbar-toggler"
+			type="button"
+			data-toggle="collapse"
+			data-target="#openMenu">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<ul id="openMenu" class="navbar-nav navbar-collapse align-items-start">
+			<li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+			<li class="nav-item"><a href="about.html" class="nav-link">Acerca de</a></li>
+			<li class="nav-item"><a href="#" class="nav-link">Galeria</a></li>
+			<li class="nav-item"><a href="#contact" class="nav-link">Contacto</a></li>
+			<li class="nav-item dropdown">
+				<a 	href="#" 
+					class="nav-link dropdown-toggle"
+					type="button"
+					data-toggle="dropdown">
+					Links
+				</a>
+				<ul class="dropdown-menu">
+					<li class="dropdown-item">
+						<a href="https://alumni.education">Alumni</a>
+					</li>
+					<li class="dropdown-item">
+						<a href="https://getbootstrap.com">Bootstrap</a>
+					</li>
+					<li class="dropdown-item">
+						<a href="https://github.com/c215714n/educacionit/tree/responsive-jueves-19hs">GitHub</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<header class="container">
+		<div id="gallery" class="carousel col-lg-10 mx-auto my-3" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active" data-interval="2000">
+					<img class="w-100" 
+						src="assets/osx-10.12-sierra.jpg" 
+						alt="os x 10.12 - sierra">
+					<p class="carousel-caption" />
+						<span class="h3">OS X Sierra</span>
+						<br/> version 10.12
+					</p>
+				</div>
+				<div class="carousel-item" data-interval="2000">
+					<img class="w-100" 
+						src="assets/osx-10.13-high-sierra.jpg" 
+						alt="os x 10.13 - high sierra" />
+					<p class="carousel-caption">
+						<span class="h3">OS X High Sierra</span>
+						<br/> version 10.13
+					</p>
+				</div>
+				<div class="carousel-item" data-interval="2000">
+					<img class="w-100" 
+						src="assets/osx-10.14-mojave.jpg" 
+						alt="os x 10.14 - mojave" />
+					<p class="carousel-caption">
+						<span class="h3">OS X Mojave</span>
+						<br/> version 10.14 <span class="text-muted">(light)</span>
+					</p>
+				</div>
+				<div class="carousel-item" data-interval="2000">
+					<img class="w-100" 
+						src="assets/osx-10.14-mojave-night.jpg" 
+						alt="os x 10.14 - mojave night" />
+					<p class="carousel-caption">
+						<span class="h3">OS X Mojave</span>
+						<br/> version 10.14 <span class="text-muted">(dark)</span>
+					</p>
+				</div>
+			</div>
+			<!-- Botones -->
+				<a href="#gallery"
+					class="carousel-control-prev"
+					role="button"
+					data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+					<span class="sr-only">Anterior</span>
+				</a>
+				<a href="#gallery"
+					class="carousel-control-next"
+					role="button"
+					data-slide="next">
+					<span class="sr-only">Siguiente</span>
+					<span class="carousel-control-next-icon"></span>
+				</a>
+		</div>
+	</header>
+
+	<!-- Bootstrap Dependencies -->
+		<!-- JQuery -->
+			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<!-- PopperJS -->
+			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+		</script>
+	<!-- script.js -->
+</body>
+</html>
