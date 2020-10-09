@@ -9,7 +9,7 @@
 	<!-- styles.css -->
 </head>
 <body>
-	<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+	<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
 		<a class="navbar-brand" href="#">Bootstrap</a>
 		<button class="navbar-toggler"
 			type="button"
@@ -46,7 +46,7 @@
 	<header class="container">
 		<div id="gallery" class="carousel col-lg-10 mx-auto my-3" data-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active" data-interval="2000">
+				<ul class="list-unstyled carousel-item active" data-interval="2000">
 					<img class="w-100" 
 						src="assets/osx-10.12-sierra.jpg" 
 						alt="os x 10.12 - sierra">
@@ -54,8 +54,8 @@
 						<span class="h3">OS X Sierra</span>
 						<br/> version 10.12
 					</p>
-				</div>
-				<div class="carousel-item" data-interval="2000">
+				</ul>
+				<ul class="list-unstyled carousel-item" data-interval="2000">
 					<img class="w-100" 
 						src="assets/osx-10.13-high-sierra.jpg" 
 						alt="os x 10.13 - high sierra" />
@@ -63,25 +63,25 @@
 						<span class="h3">OS X High Sierra</span>
 						<br/> version 10.13
 					</p>
-				</div>
-				<div class="carousel-item" data-interval="2000">
+				</ul>
+				<ul class="list-unstyled carousel-item" data-interval="2000">
 					<img class="w-100" 
 						src="assets/osx-10.14-mojave.jpg" 
 						alt="os x 10.14 - mojave" />
 					<p class="carousel-caption">
 						<span class="h3">OS X Mojave</span>
-						<br/> version 10.14 <span class="text-muted">(light)</span>
+						<br/> version 10.14 <span class="text-muted">light</span>
 					</p>
-				</div>
-				<div class="carousel-item" data-interval="2000">
+				</ul>
+				<ul class="list-unstyled carousel-item" data-interval="2000">
 					<img class="w-100" 
 						src="assets/osx-10.14-mojave-night.jpg" 
 						alt="os x 10.14 - mojave night" />
 					<p class="carousel-caption">
 						<span class="h3">OS X Mojave</span>
-						<br/> version 10.14 <span class="text-muted">(dark)</span>
+						<br/> version 10.14 <span class="text-muted">dark</span>
 					</p>
-				</div>
+				</ul>
 			</div>
 			<!-- Botones -->
 				<a href="#gallery"
@@ -100,7 +100,133 @@
 				</a>
 		</div>
 	</header>
+	<main class="container">
+		<article class="row col-lg-11 mx-auto">
+			<section class="col-lg-8">
+				<header>
+					<h1 class="h4">Medidas Relativas y Flexibles</h1>
+				</header>
+				<p> 
+					
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore nihil voluptatem eligendi fugiat incidunt atque esse accusantium ullam, necessitatibus qui quia! Officiis magnam expedita, iusto fugit corrupti consequatur est, at?
+				</p>
+				<p>
 
+					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non cum magni dolore impedit optio nemo expedita, tenetur iure repellendus delectus perspiciatis itaque voluptatum deleniti excepturi, veritatis quos eos dolores velit.
+				</p>
+			</section>
+			<section class="col-lg-4">
+				<header>
+					<h1 class="h4">Medidas Absolutas</h1>
+				</header>
+				<p>
+
+					Lorem, ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos sunt repellat similique eveniet ipsum fugit ducimus amet corporis alias? Illum sequi omnis tempora hic reprehenderit temporibus totam repudiandae ullam ipsum.
+				</p>
+			</section>
+		</article>
+		<article class="row col-lg-11 mx-auto">
+			<section class="card col-lg m-2">
+				<h1 class="card-header h5">Fluid Web Design</h1>
+				<p class="card-body">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore quisquam incidunt, quae quam doloribus, eveniet aliquid! Eum minus ipsum, voluptas quos, officia exercitationem incidunt reprehenderit culpa illum suscipit, itaque eius.
+				</p>
+			</section>
+			<section class="card col-lg m-2">
+				<h1 class="card-header h5">Adaptive Web Design</h1>
+				<p class="card-body">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore quisquam incidunt, quae quam doloribus, eveniet aliquid! Eum minus ipsum, voluptas quos, officia exercitationem incidunt reprehenderit culpa illum suscipit, itaque eius.
+				</p>
+			</section>
+			<section class="card col-xl m-2">
+				<h1 class="card-header h5">Responsive Web Design</h1>
+				<p class="card-body">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore quisquam incidunt, quae quam doloribus, eveniet aliquid! Eum minus ipsum, voluptas quos, officia exercitationem incidunt reprehenderit culpa illum suscipit, itaque eius.
+				</p>
+			</section>
+		</article>
+	</main>
+	<footer class="bg-dark text-light p-4">
+		<form id="contact" class="row col-md-10 col-lg-8 mx-auto">
+			<div class="form-group col-lg-6">
+				<label for="contactName" class="sr-only">Nombre</label>
+				<input
+					id="contactName" 
+					class="form-control"
+					placeholder="Ingrese su Nombre"
+					pattern="[a-z A-Z ñÑ]{2,50}" 
+					type="text" 
+					required/>
+				<span class="valid-feedback p-2 rounded-bottom alert-success">
+					Parece que su nombre es correcto
+				</span>
+				<span class="invalid-feedback p-2 rounded-bottom alert-danger">
+					Su nombre no supera los estandares de calidad
+				</span>
+			</div>
+			<div class="form-group col-lg-6">
+				<label for="contactLastname" class="sr-only">Apellido</label>
+				<input
+					id="contactLastname" 
+					class="form-control" 
+					placeholder="Ingrese su Apellido"
+					pattern="[a-z A-Z ñÑ]{2,50}"
+					type="text" 
+					required/>
+				<span class="valid-feedback p-2 rounded-bottom alert-success">
+					Parece que su Apellido es correcto
+				</span>
+				<span class="invalid-feedback p-2 rounded-bottom alert-danger">
+					Su Apellido no pasa los estandares de calidad
+				</span>
+			</div>
+			<div class="form-group col-lg-8">
+				<label for="contactEmail" class="sr-only">Correo</label>
+				<input 
+					id="contactEmail" 
+					class="form-control"
+					placeholder="Ingrese su Correo" 
+					type="email"
+					required />
+				<span class="valid-feedback p-2 alert-success border-bottom">
+					Su direccion de correo ha sido aprobada
+				</span>
+				<span class="invalid-feedback p-2 alert-danger border-bottom">
+					¿Estas seguro que esta es tu direccion de correo?
+				</span>
+			</div>
+			<div class="form-group col-lg-4">
+				<label for="contactPhone" class="sr-only">Telefono</label>
+				<input 
+					id="contactPhone" 
+					class="form-control" 
+					placeholder="Ingrese su Telefono"
+					pattern="[0-9]{6,20}"
+					type="text"
+					required />
+				<span class="valid-feedback p-2 alert-success rounded-bottom">
+					Parece que tu numero de telefono existe
+				</span>
+				<span class="invalid-feedback p-2 alert-danger rounded-bottom">
+					Ingresa tu numero sin espacios, ni simbolos
+				</span>
+			</div>
+			<div class="form-group col-lg-12">
+				<label for="contactConsult" class="sr-only">Consulta</label>
+				<textarea 
+					id="contactConsult"
+					class="form-control"
+					minlength="10"
+					maxlength="200" 
+					required></textarea>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="form-group col-lg-12">
+				<button class="btn btn-outline-light float-right">Enviar</button>
+			</div>
+		</form>
+	</footer>
 	<!-- Bootstrap Dependencies -->
 		<!-- JQuery -->
 			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -110,5 +236,6 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
 		</script>
 	<!-- script.js -->
+		<script src="scripts/main.js"></script>
 </body>
 </html>
