@@ -25,4 +25,10 @@ GIT reset	"Reestablece elementos de Index"
 
 	git reset HEAD -- <file> => remueve del stage el elemento seleccionado
 					siempre y cuando exista un commit previo.
-
+GIT stash	"Zona de intercambio temporal"
+	git stash apply => aplica los cambios registrados por la pila stash
+	git stash apply <stash> => aplica los cambios de un stash especifico
+	git stash drop => elimina los cambios registrados por la pila stash
+	git stash drop <stash> => elimina un stash especifico
+	git stash pop => aplica y luego elimina los cambios de la pila stash
+	git stash pop <stash> => aplica y elimina de la pila stash los cambios indicados
