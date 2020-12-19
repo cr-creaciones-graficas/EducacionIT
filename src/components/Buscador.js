@@ -44,7 +44,7 @@ class Buscador extends React.Component{
                 <Button 
                     type="submit"
                     variant="outlined"
-                    color="link">
+                    color="primary">
                     Buscar
                 </Button>
             </FormGroup>

@@ -14,9 +14,9 @@ class App extends Component{
   state = {
     termino: '',
     total:1,
-    cantidad:0,
+    cantidad:1,
     imagenes:[],
-    pagina:0
+    pagina:1
   }
 
   /// funcion que define el nuevo estado y metodo callback mediante promise (espera a la resolucion de ConsultarAPI)
@@ -36,14 +36,15 @@ class App extends Component{
     const termino = this.state.termino
     const cantidad = this.state.cantidad
     const pagina = this.state.pagina
-    const url = `https://pixabay.com/api/?key=13191127-4cf5dbfcea2f4b3416251ff80&q=${termino}&per_page=${cantidad}&page=${pagina}`;
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=LanYkWCgNLIRDm6XZOZWnYH9yZHOProA&q=${termino}&limit=&offset=${pagina * cantidad}&rating=g&lang=es`
+    
 
     //Solicitud de Datos utilizando las constantes y devuelve una funcion que define un nuevo estado de IMAGENES y una Array de Objetos
     fetch(url)
       .then(respuesta => respuesta.json())
       .then(resultado => this.setState({
-        imagenes: resultado.hits,
-        total: resultado.total
+        imagenes: resultado.data,
+        total: resultado.data.length
       }))
   }
 
@@ -65,30 +66,26 @@ class App extends Component{
   render(){
     const useStyles = ({
       myHeader:{
-        color:white,
+        color:'white',
         backgroundColor:'#192168'
       }
     });
     
     return(
     <>
-      <header class={useStyles.myHeader}>
+      <header className={useStyles.myHeader}>
         <Card variant="outlined">
-          <img src={Logo}/>
-          <h1>Buscador PIXABAY</h1>
-          {this.state.total}
-          {/* Pasamos la funcion BuscarDatos mediante PROPS*/}
+          <h1>Gifos</h1>
           <Buscador BuscarDatos={this.BuscarDatos} /> 
         </Card>
       </header>
       <main>
-        {/*Pasamos el Array de objetos mediante PROPS y dejamos que Resultado haga el mapeo*/}
-          <Resultado 
-            imagenes={this.state.imagenes}
-            PaginaActual = {this.state.pagina}
-            PaginaAnterior={this.PaginaAnterior}
-            PaginaSiguiente={this.PaginaSiguiente}
-          />
+        <Resultado 
+          imagenes={this.state.imagenes}
+          PaginaActual = {this.state.pagina}
+          PaginaAnterior={this.PaginaAnterior}
+          PaginaSiguiente={this.PaginaSiguiente}
+        />
       </main>
     </>
     )

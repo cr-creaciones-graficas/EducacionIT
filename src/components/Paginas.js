@@ -4,11 +4,7 @@ import {Button} from '@material-ui/core/'
 const Paginas = (props) => {
     return(
         <div>
-            <div>
-                <span>{props.PaginaActual - 1}</span>
-                <span>{props.PaginaActual}</span>
-                <span>{props.PaginaActual + 1}</span>
-            </div>
+            <div>{props.PaginaActual}</div>
             <Button 
                 onClick={props.PaginaAnterior}
                 variant="contained"
