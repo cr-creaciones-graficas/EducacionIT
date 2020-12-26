@@ -19,7 +19,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 5;
-  padding: 1rem 0 0;
+  padding: 1rem 0 0.5rem;
   color: #572ee5;
   background-color: #fefefe;
   border-top: 0.2rem solid #572ee5;
@@ -40,8 +40,10 @@ nav {
 nav .menu {
   overflow: hidden;
   display: none;
+  position: fixed;
+  top: 3rem;
   width: 100%;
-  height: 0;
+  height: 100vw;
   margin: 0;
   padding: 1rem;
   color: #fefefe;
@@ -97,6 +99,17 @@ nav .menu li:first-child label {
 }
 nav .menu li:first-child label:after {
   content: " Diurno";
+}
+nav .open {
+  display: block;
+  opacity: 0.8;
+}
+@media screen and (min-width: 720px) {
+  nav .open {
+    display: flex;
+    padding: 0;
+    background-color: transparent;
+  }
 }
 
 #header {
@@ -226,7 +239,20 @@ main section {
 main #createGif {
   display: none;
 }
+main #createGif article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #createGif video, main #createGif img {
+  display: none;
+  width: 480px;
+  height: 240px;
+}
 main #createGif:target {
+  display: block;
+}
+main #createGif .show {
   display: block;
 }
 main #results {
@@ -311,7 +337,7 @@ main video {
 
 /*nightmode*/
 #mode[type=checkbox]:checked ~ nav {
-  padding: 1rem 0 0;
+  padding: 1rem 0 0.5rem;
   color: #ccc;
   background-color: #333;
   border-top: 0.2rem solid black;

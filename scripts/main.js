@@ -36,12 +36,19 @@
 					break;
 				case 3:
 					stopGif()
-					gifBtn.innerHTML = 'Subir'
+					gifBtn.innerHTML = 'Subir';
+					gifMedia.classList.toggle('show');
+					gifMediaOut.classList.toggle('show');
 					phase = 4;
 					break;
 				case 4:
-					upGif()
-					gifBtn.innerHTML = 'Comenzar'
+					question = confirm('¿deseas subir el GIF?')
+					if (question){
+						gifBtn.innerHTML = 'Comenzar';
+						gifMedia.classList.toggle('show');
+						gifMediaOut.classList.toggle('show');
+						uploadGif();
+					}
 					phase = 1
 					break;
 				default:
@@ -104,7 +111,32 @@
 		gifRecorder = null;
 		videoRecorder = null;
 	}
-
+	async function uploadGif() {
+		console.log("***comenzando subida***");
+		const formData = new FormData();
+		formData.append("file", gifSrc, "myGif.gif");
+			const params = {
+				method: "POST",
+				body: formData,
+				json: true
+		};
+		const data = await fetchURL(`https://upload.giphy.com/v1/gifs?api_key=LanYkWCgNLIRDm6XZOZWnYH9yZHOProA`, params);
+		console.log(await data);
+		console.log("***subida exitosa***");
+		return await data;
+	}
+	async function fetchURL(url, params = null) {
+	try {
+		const fetchData = await fetch(url, params);
+		const response = await fetchData.json();
+		return response;
+	} catch (error) {
+		if (error.name !== "AbortError") {
+			console.log("Error al obtener resultados");
+		}
+		return error;
+	}
+}
 //constructorArea
 	function showGifs(item){
 		return (
