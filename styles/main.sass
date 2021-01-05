@@ -206,7 +206,7 @@ nav
 				+mode(darken($bg_color, 20%), transparent)
 				+normalize($p: .2rem 2.5rem)
 				border-radius: .25rem
-				background:url($icon+"icon_search.svg") no-repeat left
+				background: url($icon+"icon_search.svg") no-repeat left
 			&:before
 				+normalize(.2rem auto, none, 0)
 				content: ''
@@ -237,7 +237,10 @@ nav
 			position: absolute
 			display: none
 			top: .5rem
-			left: 5rem
+			left: 3.5rem
+			font-size: .8rem
+			@media screen and (min-width: $sm)
+				font-size: 1rem
 	p
 		+normalize($p: 1rem 3rem)
 		strong

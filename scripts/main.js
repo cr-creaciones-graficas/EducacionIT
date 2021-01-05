@@ -16,18 +16,14 @@
 	// 	Areas Eventos
 		const menuBtn	= document.querySelector('#menu');
 		const menuList	= document.querySelector('.menu');
-		
 		const frmSearch	= document.querySelector('#search')
 		const textField = document.querySelector('#search input')
 		const dataList 	= document.querySelector('#suggestion')
-		
 		const titleArea = document.querySelector('section h1')
 		const gifsArea 	= document.querySelector('#results')
 		const pageArea 	= document.querySelector('#pagination')
-		
 		const trendArea = document.querySelector('#trending');
 		const stageArea	= document.querySelectorAll('#createGif .menu li');
-		
 		const gifBtn 	= document.querySelector('#createGif button');
 		const gifMedia 	= document.querySelector('#createGif article video');
 		const gifView	= document.querySelector('#createGif article img');
@@ -250,15 +246,13 @@
 		downHit = document.querySelectorAll('.download');
 		openHit = document.querySelectorAll('.open');
 		
-		likeHit.forEach( like => like.addEventListener(
-			'click', () => alert('vas a dar like')
-		))
-		downHit.forEach( down => down.addEventListener(
-			'click', () => alert('vas a descargar')
-		))
-		openHit.forEach( open => open.addEventListener(
-			'click', () => alert('vas a maximizar')
-		))
+		likeHit.forEach( like => like.onclick = () => alert('vas a dar like')
+		)
+		downHit.forEach( down => like.onclick = () => alert('vas a descargar')
+		)
+		openHit.forEach( open => like.onclick = () => alert('vas a maximizar')
+		)
+		
 	//	Sugerencias de Busqueda
 		textField.addEventListener(
 			'input', () => {

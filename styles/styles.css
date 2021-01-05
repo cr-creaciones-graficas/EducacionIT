@@ -403,6 +403,7 @@ nav .open {
   border: 0;
   padding: 0.2rem 2.5rem;
   border-radius: 0.25rem;
+  background: url("../assets/icons/icon_search.svg") no-repeat left;
 }
 #header form #suggestion:before {
   margin: 0.2rem auto;
@@ -443,7 +444,13 @@ nav .open {
   position: absolute;
   display: none;
   top: 0.5rem;
-  left: 5rem;
+  left: 3.5rem;
+  font-size: 0.8rem;
+}
+@media screen and (min-width: 576px) {
+  #header form label {
+    font-size: 1rem;
+  }
 }
 #header p {
   margin: 0;
