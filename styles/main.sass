@@ -54,6 +54,11 @@ body
 	color: $special_color
 .button
 	+normalize(.5rem, 2px solid $color, .5rem 1rem)
+/*webkit*/
+::-webkit-scrollbar
+	+mode($bg_color)
+	-webkit-appearance: none
+	border-radius: .5rem
 /*navegacion*/
 nav
 	+mode
@@ -158,9 +163,6 @@ nav
 		flex-direction: column
 		position: relative
 		max-width: $sm
-		::-webkit-scrollbar
-			width: 0
-			height: 0
 		/*campo de busqueda*/
 		input
 			+normalize(0, 2px solid $color, .5rem)
