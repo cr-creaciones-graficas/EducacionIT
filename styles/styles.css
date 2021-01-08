@@ -116,6 +116,19 @@ body {
   background-image: url("../assets/icons/icon_max_noc.svg");
 }
 
+.close {
+  background-image: url("../assets/icons/icon_close.svg");
+}
+
+.close:hover,
+#mode:checked ~ * .close:hover {
+  background-image: url("../assets/icons/icon_close_hover.svg");
+}
+
+#mode:checked ~ * .close {
+  background-image: url("../assets/icons/icon_close_noc.svg");
+}
+
 .download {
   background-image: url("../assets/icons/icon_download.svg");
 }
@@ -204,7 +217,7 @@ nav {
   padding: 0.5rem 0;
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 2;
   border-top: 0.2rem solid #572ee5;
   display: flex;
   flex-wrap: wrap;
@@ -405,7 +418,7 @@ nav .open {
   -webkit-appearance: none;
   width: 1.5rem;
   height: 1.5rem;
-  background: url("../assets/icons/close.svg") no-repeat center;
+  background: url("../assets/icons/icon_close.svg") no-repeat center;
 }
 #header form #suggestion {
   margin: 0;
@@ -499,10 +512,11 @@ main {
   /*localStorage*/
 }
 main section {
+  max-width: 1140px;
   display: none;
   color: #572ee5;
   background-color: #fefefe;
-  margin: 0;
+  margin: auto;
   border: 0;
   padding: 1rem;
   text-align: center;
@@ -510,9 +524,6 @@ main section {
 }
 main section:target {
   display: block;
-}
-main section:empty {
-  height: 0;
 }
 main section:last-child {
   display: block;
@@ -694,7 +705,7 @@ main #trending {
     justify-content: center;
   }
 }
-main article {
+main article:not(.active) {
   overflow: hidden;
   position: relative;
   display: flex;
@@ -705,7 +716,7 @@ main article {
   margin: 0.5rem;
   background-color: black;
 }
-main article .hidden {
+main article:not(.active) .hidden {
   color: #fefefe;
   background-color: rgba(87, 46, 229, 0.5);
   margin: 0;
@@ -720,31 +731,79 @@ main article .hidden {
   left: 0;
   right: 0;
 }
-main article .hidden .social {
+main article:not(.active) .hidden .social {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
 }
-main article .hidden p {
+main article:not(.active) .hidden p {
   margin: 0;
   border: none;
   padding: 0.2rem;
   text-align: left;
 }
-main article:hover .hidden {
+main article:not(.active):hover .hidden {
   bottom: 0;
   top: 0;
 }
-main article:hover a {
+main article:not(.active):hover a {
   margin: 0.25rem;
   border: 0;
   padding: 1rem;
   width: 1.5rem;
   height: 1.5rem;
 }
+main article.active {
+  color: #572ee5;
+  background-color: #fefefe;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main article.active img {
+  margin: 4.2rem auto 0.5rem;
+  border: 0;
+  padding: 0;
+  max-width: 480px;
+  max-height: 360px;
+  position: relative;
+}
+main article.active .hidden {
+  position: static;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 480px;
+  text-align: left;
+}
+main article.active .hidden a {
+  width: 2rem;
+  height: 2rem;
+}
+main article.active .hidden .close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+main button {
+  top: 0;
+  bottom: 0;
+}
+main .prev {
+  left: 1rem;
+}
+main .next {
+  right: 1rem;
+}
 main video, main img {
   height: 100%;
-  background-color: white;
 }
 main .fav.active {
   background: url("../assets/icons/icon_fav_active.svg") no-repeat center, radial-gradient(#fefefe, #cbcbcb) !important;
@@ -842,7 +901,7 @@ main .fav.active {
   background-color: transparent;
 }
 #mode:checked ~ #header ::-webkit-search-cancel-button {
-  background: url("../assets/icons/close_noc.svg") no-repeat center;
+  background: url("../assets/icons/icon_close_noc.svg") no-repeat center;
 }
 #mode:checked ~ main {
   color: #ccc;
@@ -869,14 +928,20 @@ main .fav.active {
   background-color: #1a1a1a;
 }
 #mode:checked ~ main #crear_gifo article {
+  color: #ccc;
+  background-color: #333;
   margin: auto;
   border: 1px solid #ccc;
   padding: 1.5rem;
 }
-#mode:checked ~ main #crear_gifo .menu {
+#mode:checked ~ main article.active {
+  color: #ccc;
+  background-color: #333;
+}
+#mode:checked ~ main article.active .menu {
   border-bottom: 0.3rem solid #ccc;
 }
-#mode:checked ~ main #crear_gifo .menu li {
+#mode:checked ~ main article.active .menu li {
   color: #ccc;
   background-color: transparent;
   margin: 0.5rem;
