@@ -369,7 +369,7 @@
 		const userActions = () => {			
 			likeHit.forEach( (like) => like.addEventListener( 'click', () => { 
 				totalItems(like);
-				box.parentNode.parentNode.id == 'favoritos' ? window.location.href="#favoritos" : null
+				box.parentNode.parentNode.id == 'favoritos' ? location.reload() : null
 				box.id.includes('fav_') ? remStorage(id) : 
 				localStorage.getItem('fav_'+ box.id) ? remStorage('fav_' + box.id) : 
 					addStorage(box.id, 'fav_');
@@ -377,6 +377,7 @@
 			}	)	)
 			binHit.forEach( bin => bin.addEventListener( 'click', () => {
 				totalItems(bin);
+				box.parentNode.parentNode.id == 'mis_gifos' ? location.reload() : null
 				remStorage(box.id)
 			}	)	)	
 			openHit.forEach( open  => open.addEventListener('click', (e) => {	
