@@ -7,17 +7,18 @@
 		const idURL		= 'https://api.giphy.com/v1/gifs/'
 		const apiKey 	= 'LanYkWCgNLIRDm6XZOZWnYH9yZHOProA';
 	// 	Parametros
-		let url, limit  = 3, offset = 0;
+		let url, limit  = 3, offset = 0, phase;
 		let total, pages, msg = 'favs';
 		let m = 0, s = 0;
-		let phase, nextItem;
-		let likeHit = [], openHit = [];
+		let likeHit = [], openHit = [], nowItem;
 		let totalGifs = [], totalFavs = []
 /*	Areas de Eventos	*/
-	//	Barra de Navegacion
+	//	Elementos de Navegacion
 		const menuBtn	= document.querySelector('#menu');
 		const menuList	= document.querySelector('.menu');
 		const menuItem	= document.querySelectorAll('.menu li');
+		const prevItem	= document.querySelector('section:last-child > .prev');
+		const nextItem	= document.querySelector('section:last-child > .next');
 	//	Formulario de Busqueda
 		const frmSearch	= document.querySelector('#search')
 		const textField = document.querySelector('#search input')
@@ -48,7 +49,7 @@
 					giphy.data.forEach( item => editArea.innerHTML += buildArea(item, type) )
 					showPages(url, total);
 					loadStorage();
-					getItems();
+					userActions();
 		}	)	)	};
 	//	Constructores
 		//	Resultados de Busqueda
@@ -74,8 +75,7 @@
 						<strong>${item.title ? item.title : 'untitled'}</strong>
 					</p>
 					<div class="social">
-						<a href="${type == 'result' ? '#'+item.id : '#' + type + item.id}" "
-							class="icon fav ${ type == 'fav_' ? 'active' : '' }"></a>
+						<a class="icon${ type == 'gif_' ? ' trash' : ' fav' }"></a>
 						<a href="${item.img ? item.img : item.images.fixed_height.url}" 
 							class="icon download" target="_blank" download>
 						</a>
@@ -190,7 +190,7 @@
 		//	Menu hamburguesa
 			menuBtn.addEventListener( 'click', () => { 
 				menuList.classList.toggle('open');
-				menuList.classList.contains('open')? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;';
+				menuList.classList.boxains('open')? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;';
 			}	);
 		//	Item Activo
 			menuItem.forEach( (item, i) => item.addEventListener(
@@ -219,15 +219,15 @@
 			  		if (item.fav){
 			  			totalFavs.push(id);
 				  		favArea.innerHTML += showGifs(item, 'fav_');
-				  		favRef = document.getElementById(id);
-					  	favRef ? favRef.querySelector('.fav').classList.toggle('active') : null;
-			}	}	} 	
+			}	}	} 	 
 			totalGifs.length == 0 ? noResults(noGifs, 'gifs') : noGifs.innerHTML = ``;
 			totalFavs.length == 0 ? noResults(noFavs, 'favs') : noFavs.innerHTML = ``;
+			likeHit = document.querySelectorAll('.fav');
+			openHit = document.querySelectorAll('.max');
 			}
 		//	Agregar Item
 			const addStorage = (id, item, fav, gif) => {
-				id.includes('fav_') || id.includes('gif_') ? id = id.slice(4) : null;
+				(id.includes('fav_') || id.includes('gif_')) ? id = id.slice(4) : null;
 				window.localStorage.setItem( id , JSON.stringify( {
 					'id' : id,
 					'img': item.src, 
@@ -244,7 +244,8 @@
 		//	Remover Item
 			const remStorage = (id) => {
 				window.localStorage.removeItem( id );
-				document.getElementById(id).querySelector('.fav').classList.toggle('active');
+				exist =	document.getElementById(id);
+				exist ? exist.querySelector('.fav').classList.toggle('active') : null;
 			}
 	//	Elementos del Usuario
 	//	Sugerencias de Busqueda 
@@ -326,7 +327,7 @@
 		}
 	// 	Detener Grabacion
 		async function stopGif() {
-		//	Carga de Contenido
+		//	Carga de boxenido
 			await videoRecorder.stopRecording();
 			await gifRecorder.stopRecording();
 			const videoBlob = await videoRecorder.getBlob();
@@ -340,7 +341,7 @@
 			await videoRecorder.destroy();
 			await gifRecorder.reset();
 			await gifRecorder.destroy();
-		//	Limpieza de Contenido
+		//	Limpieza de boxenido
 			gifSrc = await gifBlob;
 			gifView.src = URL.createObjectURL(await gifBlob);
 			gifRecorder = null;
@@ -372,31 +373,68 @@
 			return response		
 		};
 /* 	Acciones del Usuario */
-	//	Elementos Utilizables
-		const getItems = () => {
-			// 	Mapeo y Funcionalidad
-				likeHit = document.querySelectorAll('.fav');
-				openHit = document.querySelectorAll('.max');
-				userActions();
-		}
 	//	Botones de Accion
-		const userActions = () => {
+		const userActions = () => {			
 			likeHit.forEach( (like , i) => like.addEventListener( 'click', (e) => { 
-				e.preventDefault();
 				totalItems(like);
-				cont.id.includes('fav_') ? remStorage(cont.id.slice(4)) : 
-					localStorage.getItem(cont.id) ? remStorage(cont.id) : addStorage(cont.id, item, true);
+				box.id.includes('fav_') ? 
+					remStorage(box.id.slice(4)) : 
+					localStorage.getItem(box.id) ? 
+						remStorage(box.id) : 
+						addStorage(box.id, item, true);
+				like.classList.contains('active') ? like.classList.add('active') : like.classList.remove('active');
 				loadStorage();
 			}	)	)	
+			
 			openHit.forEach( ( open, i ) => open.addEventListener('click', (e) => {	
-				e.preventDefault();	
 				totalItems(open);
-				cont.classList.toggle('active');
+				box.classList.toggle('active');
 				open.classList.toggle('max');
 				open.classList.toggle('close');
+				prevItem.classList.toggle('selected');
+				nextItem.classList.toggle('selected');
 			}	)	)
 		}
 		const totalItems = (param) => { 
-			cont = param.parentNode.parentNode.parentNode
+			box = param.parentNode.parentNode.parentNode
 			item = param.parentNode.parentNode.parentNode.querySelector('img');
+		}
+
+		nextItem.addEventListener('click', () => changeItem(nextItem,true));
+		prevItem.addEventListener('click', () => changeItem(prevItem,false));
+
+		const changeItem = (item, type) => {
+			nowItem = document.querySelector('article.active');
+			nowItem ? null : 
+				document.querySelector('article.selected') ? 
+					nowItem = document.querySelector('article.selected') :
+					nowItem = document.querySelector('section:last-child article');
+			firstItem = nowItem.parentNode.firstElementChild;
+			lastItem  = nowItem.parentNode.lastElementChild;
+			switch(type){
+				case true:
+					nowItem == lastItem ? 
+						newItem = firstItem : 
+						newItem = nowItem.nextElementSibling;
+				break;
+				case false:
+					nowItem == firstItem ? 
+						newItem = lastItem : 
+						newItem = nowItem.previousElementSibling;
+				break;
+			}	
+			if(item.classList.contains('selected')){
+				nowItem.querySelector('.close').classList.add('max');
+				nowItem.querySelector('.max').classList.remove('close');
+				newItem.querySelector('.max').classList.add('close');
+				newItem.querySelector('.close').classList.remove('max');
+				nowItem.classList.remove('active');
+				newItem.classList.add('active');
+			} else {
+				nowItem.classList.contains('selected') ?
+					newItem.classList.toggle('selected') :
+					nowItem.classList.toggle('selected');
+				newItem.classList.contains('selected') ?
+					nowItem.classList.remove('selected') : null
+			}
 		}

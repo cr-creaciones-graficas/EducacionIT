@@ -11,6 +11,7 @@
   box-sizing: border-box;
   font-family: century gothic, sans-serif;
   outline: none;
+  background-color: transparent;
   text-decoration: none;
   transition: all 0.5s ease-in;
 }
@@ -32,7 +33,6 @@ body {
   border-radius: 0.25rem;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -186,9 +186,16 @@ body {
 }
 
 .button {
+  cursor: pointer;
+  color: #572ee5;
+  background-color: transparent;
   margin: 0.5rem;
-  border: 2px solid #572ee5;
-  padding: 0.5rem 1rem;
+  border: 0.1rem solid #572ee5;
+  padding: 0.5rem 0.75rem;
+}
+.button:hover {
+  color: #fefefe;
+  background-color: #572ee5;
 }
 
 /*webkit*/
@@ -208,7 +215,7 @@ body {
   background: radial-gradient(ellipse at bottom right, #cbcbcb, #fefefe);
 }
 
-/*navegacion*/
+/*barra de navegacion*/
 nav {
   color: #572ee5;
   background-color: #fefefe;
@@ -223,6 +230,8 @@ nav {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  /*menu principal*/
+  /*menu desplegable*/
 }
 @media screen and (min-width: 768px) {
   nav {
@@ -282,6 +291,10 @@ nav .menu {
     background-color: transparent;
   }
 }
+nav .menu li {
+  /*modo diurno / nocturno */
+  /*crear gifo*/
+}
 @media screen and (min-width: 768px) {
   nav .menu li {
     border-bottom: 0.2rem solid transparent;
@@ -293,7 +306,7 @@ nav .menu {
 @media screen and (min-width: 768px) {
   nav .menu li.active a {
     color: #cbcbcb;
-    background-color: #fefefe;
+    background-color: transparent;
   }
 }
 nav .menu li a {
@@ -307,6 +320,7 @@ nav .menu li a {
 @media screen and (min-width: 768px) {
   nav .menu li a {
     color: #572ee5;
+    background-color: transparent;
   }
 }
 nav .menu li a::after {
@@ -327,6 +341,7 @@ nav .menu li a::after {
 }
 nav .menu li:first-child label {
   cursor: pointer;
+  background-color: transparent;
 }
 nav .menu li:first-child label:after {
   content: " Diurno";
@@ -341,9 +356,13 @@ nav .menu li:last-child a {
   font-size: 1.5rem;
   text-align: center;
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
   nav .menu li:last-child a {
     display: block;
+  }
+  nav .menu li:last-child a:hover {
+    color: #fefefe;
+    background-color: #572ee5;
   }
 }
 nav .menu li:last-child.active a {
@@ -358,7 +377,6 @@ nav .open {
   nav .open {
     display: flex;
     padding: 0;
-    background-color: transparent;
   }
 }
 
@@ -370,6 +388,7 @@ nav .open {
   border: 0;
   padding: 0;
   text-align: center;
+  /*formulario de busqueda*/
 }
 #header h1 {
   margin: auto;
@@ -396,7 +415,9 @@ nav .open {
   position: relative;
   max-width: 576px;
   /*campo de busqueda*/
+  /*estilos del campo*/
   /*campo de sugerencias*/
+  /*boton buscar*/	
 }
 #header form input {
   margin: 0;
@@ -406,6 +427,7 @@ nav .open {
   border-radius: 1rem 1rem 0 0;
   border-bottom: none;
   width: 100%;
+  /*visualizacion de sugerencias*/
 }
 #header form input:invalid {
   padding: 0 1rem;
@@ -484,9 +506,6 @@ nav .open {
   height: 1px;
   background-color: #572ee5;
 }
-#header form #suggestion:focus:focus {
-  background-color: transparent;
-}
 #header form button {
   position: absolute;
   z-index: 1;
@@ -525,6 +544,8 @@ main {
   border: 0;
   padding: 0;
   /*secciones de pagina*/
+  /*elementos populares*/
+  /*resultados de busqueda*/
   /*creacion gif*/
   /*area de resultados*/
   /*area de paginacion*/
@@ -537,23 +558,19 @@ main section {
   position: relative;
   color: #572ee5;
   background-color: #fefefe;
-  margin: auto;
-  border: none;
-  padding: 3rem 1rem 1rem;
+  margin: 0;
+  border: 0;
+  padding: 1rem;
   max-width: 992px;
   height: auto;
   text-align: center;
 }
-main section > .button {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-}
-main section > .button.prev {
-  left: 0;
-}
-main section > .button.next {
-  right: 0;
+@media screen and (min-width: 768px) {
+  main section {
+    margin: auto;
+    border: none;
+    padding: 3rem 3rem 1rem;
+  }
 }
 main section h1 {
   display: flex;
@@ -570,6 +587,42 @@ main section:last-child {
   display: block;
   color: #572ee5;
   background-color: #e5e5e5;
+  /*navegacion y vistas*/
+}
+main section:last-child .button {
+  display: none;
+  position: absolute;
+  top: calc(65% - 1rem);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  main section:last-child .button {
+    display: block;
+  }
+}
+main section:last-child .button.prev {
+  left: 0;
+}
+@media screen and (min-width: 992px) {
+  main section:last-child .button.prev {
+    left: 4rem;
+  }
+}
+main section:last-child .button.next {
+  right: 0;
+}
+@media screen and (min-width: 992px) {
+  main section:last-child .button.next {
+    right: 4rem;
+  }
+}
+main section:last-child button.selected {
+  position: fixed;
+  top: calc(50% - 1rem);
+  z-index: 5;
 }
 main .title {
   margin: 0;
@@ -584,76 +637,93 @@ main #search {
   display: block;
 }
 main #crear_gifo {
+  overflow: hidden;
   margin: auto;
   border: 0;
   padding: 0;
-  overflow: hidden;
-  height: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  height: 0;
   /*area de grabacion*/
   /*area de proceso*/
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
   main #crear_gifo {
     height: auto;
   }
+  main #crear_gifo .camera {
+    position: absolute;
+    left: -30%;
+    width: 20vw;
+    min-width: 4rem;
+    max-width: 12rem;
+    height: 8rem;
+    background: url("../assets/icons/bg_camera.svg") no-repeat left center, url("../assets/icons/bg_light.svg") no-repeat right center;
+    background-size: 70%, 45%;
+  }
 }
-main #crear_gifo .camera {
-  position: absolute;
-  left: -40%;
-  width: 12.75rem;
-  height: 10rem;
-  background: url("../assets/icons/bg_camera.svg") no-repeat left center, url("../assets/icons/bg_light.svg") no-repeat right center;
+@media screen and (min-width: 768px) and (min-width: 992px) {
+  main #crear_gifo .camera {
+    left: -35%;
+  }
 }
-main #crear_gifo .tape {
-  position: absolute;
-  bottom: -10%;
-  right: -30%;
-  width: 5rem;
-  height: 5rem;
-  background: url("../assets/icons/bg_tape.svg") no-repeat right center;
-  background-size: contain;
+@media screen and (min-width: 768px) {
+  main #crear_gifo .tape {
+    position: absolute;
+    bottom: -10%;
+    right: -22.5%;
+    min-width: 2rem;
+    max-width: 4rem;
+    height: 4rem;
+    background: url("../assets/icons/bg_tape.svg") no-repeat right center;
+    background-size: contain;
+  }
+}
+@media screen and (min-width: 768px) and (min-width: 992px) {
+  main #crear_gifo .tape {
+    right: -20%;
+  }
 }
 main #crear_gifo article {
+  color: #572ee5;
+  background-color: transparent;
   margin: auto;
   border: 1px solid #572ee5;
   padding: 1.5rem;
-  background-color: transparent;
   overflow: visible;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 60%;
   max-width: 540px;
-  min-height: 360px;
+  min-height: 320px;
 }
 main #crear_gifo article video, main #crear_gifo article img {
   position: absolute;
   top: 15%;
+  bottom: 15%;
+  left: 20%;
   right: 20%;
   width: 60%;
   height: 70%;
   opacity: 0;
-  background-color: transparent;
 }
-main #crear_gifo article video:before, main #crear_gifo article video:after, main #crear_gifo article img:before, main #crear_gifo article img:after {
-  content: "";
+main #crear_gifo article .message {
   position: absolute;
-  display: block;
-  width: 2rem;
-  height: 2rem;
-  border: 2px solid #33c9ca;
-  background-color: #33c9ca;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 main #crear_gifo:target {
   display: flex;
 }
 main #crear_gifo div:last-child {
-  width: 720px;
+  width: 62.5%;
+  max-width: 720px;
 }
 main #crear_gifo .menu {
   margin: auto;
@@ -679,7 +749,7 @@ main #crear_gifo .menu li {
 }
 main #crear_gifo .menu a {
   position: absolute;
-  right: 12.5%;
+  right: 2.5%;
 }
 main #crear_gifo .menu .active {
   color: #fefefe;
@@ -728,19 +798,7 @@ main #pagination ul strong {
   display: block;
 }
 main #pagination .button {
-  cursor: pointer;
-  color: #572ee5;
-  background-color: #fefefe;
-  margin: 1rem;
-  border: 1px solid #572ee5;
-  padding: 0.5rem 1rem;
-  outline: none;
   border-radius: 1rem;
-  background-color: transparent;
-}
-main #pagination .button:hover {
-  color: #fefefe;
-  background-color: #572ee5;
 }
 main #favoritos > div,
 main #mis_gifos > div {
@@ -807,11 +865,11 @@ main article:not(.active) .hidden p {
   padding: 0.2rem;
   text-align: left;
 }
-main article:not(.active):hover .hidden {
+main article:not(.active):hover .hidden, main article:not(.active).selected .hidden {
   bottom: 0;
   top: 0;
 }
-main article:not(.active):hover a {
+main article:not(.active):hover a, main article:not(.active).selected a {
   margin: 0.25rem;
   border: 0;
   padding: 1rem;
@@ -833,14 +891,13 @@ main article.active {
   align-items: center;
 }
 main article.active img {
+  position: relative;
   margin: 4.2rem auto 0.5rem;
   border: 0;
   padding: 0;
   width: 100%;
-  height: auto;
   max-width: 480px;
   max-height: 360px;
-  position: relative;
 }
 main article.active .hidden {
   position: static;
@@ -857,17 +914,6 @@ main article.active .hidden a {
 main article.active .hidden .close {
   position: fixed;
   top: 1rem;
-  right: 1rem;
-}
-main button.changeItem {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
-main .prev {
-  left: 1rem;
-}
-main .next {
   right: 1rem;
 }
 main video, main img {
@@ -940,16 +986,23 @@ main .fav.active {
   color: #572ee5;
   background-color: black;
 }
-@media screen and (min-width: 768px) {
-  #mode:checked ~ nav .menu {
-    background-color: transparent;
-  }
+#mode:checked ~ nav .menu li {
+  color: #ccc;
+  background-color: #333;
 }
 #mode:checked ~ nav .menu li a {
   color: #ccc;
 }
 #mode:checked ~ nav .menu li:first-child label:after {
   content: " Nocturno";
+}
+#mode:checked ~ nav .menu li:last-child a:hover, #mode:checked ~ nav .menu li.active:last-child a {
+  color: #333;
+  background-color: #ccc;
+}
+#mode:checked ~ nav .menu li.active a {
+  color: #999999;
+  background-color: transparent;
 }
 #mode:checked ~ #header {
   color: #ccc;
@@ -983,7 +1036,7 @@ main .fav.active {
 #mode:checked ~ main section .button {
   color: #ccc;
   background-color: #333;
-  border: 1px solid #ccc;
+  border: 0.1rem solid #ccc;
 }
 #mode:checked ~ main section .button:hover {
   color: #333;
@@ -999,6 +1052,18 @@ main .fav.active {
   margin: auto;
   border: 1px solid #ccc;
   padding: 1.5rem;
+}
+#mode:checked ~ main #crear_gifo .menu {
+  border-color: #ccc;
+}
+#mode:checked ~ main #crear_gifo .menu li {
+  color: #ccc;
+  background-color: #333;
+  border-color: #ccc;
+}
+#mode:checked ~ main #crear_gifo .menu .active {
+  color: #333;
+  background-color: #ccc;
 }
 #mode:checked ~ main article.active {
   color: #ccc;
