@@ -229,7 +229,7 @@
 			}
 		//	Agregar Item
 			const addStorage = async (id, type) => {
-				const response = await fetchURL(`https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`);
+				const response = await fetchURL(`${idURL+id}?api_key=${apiKey}`);
 				const data = JSON.stringify(response.data);
 				localStorage.setItem(type + id, data);
 				return loadStorage();
