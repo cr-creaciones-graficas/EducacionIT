@@ -860,6 +860,7 @@ main article:not(.active) .hidden .social {
   right: 0.5rem;
 }
 main article:not(.active) .hidden p {
+  max-width: 70%;
   margin: 0;
   border: none;
   padding: 0.2rem;

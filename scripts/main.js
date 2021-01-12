@@ -57,10 +57,7 @@
 				`<article id="${type == 'result' ? item.id : type + item.id}" 
 					class="${type == 'fav_' ? 'favorite' : type == 'gif_' ? 'mygifo' : 'result'}">
 					<img class="${type == 'fav_' ? 'favorite' : type == 'gif_' ? 'mygifo' : 'result'}" 
-						src="${ type == 'result' ? 
-							item.images.fixed_height_downsampled.webp : 
-							item.img 
-						}" 
+						src="${ item.images.fixed_height_downsampled.url }" 
 						alt="${ item.title }"
 						title="${ item.username }"
 					ismap />
@@ -75,7 +72,9 @@
 						<strong>${item.title ? item.title : 'untitled'}</strong>
 					</p>
 					<div class="social">
-						<a class="icon${ type == 'gif_' ? ' trash' : ' fav' }"></a>
+						<a class="icon${ type == 'gif_' ? ' trash' : 
+							type == 'fav_' ? ' fav active' : ' fav'}">
+						</a>
 						<a href="${item.img ? item.img : item.images.fixed_height.url}" 
 							class="icon download" target="_blank" download>
 						</a>
@@ -190,7 +189,7 @@
 		//	Menu hamburguesa
 			menuBtn.addEventListener( 'click', () => { 
 				menuList.classList.toggle('open');
-				menuList.classList.boxains('open')? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;';
+				menuList.classList.contains('open')? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;';
 			}	);
 		//	Item Activo
 			menuItem.forEach( (item, i) => item.addEventListener(
@@ -203,7 +202,7 @@
 			url = `${trendURL}?api_key=${apiKey}&limit=${limit}&rating=g`;
 			fetchAPI(url, trendArea, showGifs);
 		}	)
-	// 	Elementos Favoritos
+	// 	Elementos Guardados
 		const loadStorage = () =>{
 			favArea.innerHTML = ``; 
 			myGifs.innerHTML = ``;
@@ -213,39 +212,32 @@
 				for ( i = 0; i < localStorage.length; i++ ){  
 			  		id = localStorage.key(i);
 			  		item = JSON.parse(localStorage.getItem(id));
-			  		if (item.gif) {
+			  		if (id.includes('gif_')) {
 			  			totalGifs.push(id);
+			  			myGifs.innerHTML += showGifs(item, 'gif_')
 			  		}
-			  		if (item.fav){
+			  		if (id.includes('fav_')){
 			  			totalFavs.push(id);
 				  		favArea.innerHTML += showGifs(item, 'fav_');
 			}	}	} 	 
 			totalGifs.length == 0 ? noResults(noGifs, 'gifs') : noGifs.innerHTML = ``;
 			totalFavs.length == 0 ? noResults(noFavs, 'favs') : noFavs.innerHTML = ``;
+			
 			likeHit = document.querySelectorAll('.fav');
+			binHit	= document.querySelectorAll('.trash')
 			openHit = document.querySelectorAll('.max');
 			}
 		//	Agregar Item
-			const addStorage = (id, item, fav, gif) => {
-				(id.includes('fav_') || id.includes('gif_')) ? id = id.slice(4) : null;
-				window.localStorage.setItem( id , JSON.stringify( {
-					'id' : id,
-					'img': item.src, 
-					'username': item.title, 
-					'title': item.alt,
-					'fav': fav, 
-					'gif': gif
-			}	)	)	} 
-		//	Revisar Item
-			const getStorage = () => {
-				item = JSON.parse(window.localStorage.getItem(id));
-				(item.fav && item.gif) ? remStorage(id) : addStorage(false, item.gif);
-			}
+			const addStorage = async (id, type) => {
+				const response = await fetchURL(`https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`);
+				const data = JSON.stringify(response.data);
+				localStorage.setItem(type + id, data);
+				return loadStorage();
+			} 
 		//	Remover Item
 			const remStorage = (id) => {
 				window.localStorage.removeItem( id );
-				exist =	document.getElementById(id);
-				exist ? exist.querySelector('.fav').classList.toggle('active') : null;
+				return loadStorage()
 			}
 	//	Elementos del Usuario
 	//	Sugerencias de Busqueda 
@@ -281,112 +273,113 @@
 			url = `${searchURL}?api_key=${apiKey}&q=${termino}&limit=${limit}&offset=${offset}&rating=g&lang=es`
 			fetchAPI(url, gifsArea, showGifs);
 		}
-	//	Creacion de Gifs
-		recAgain.addEventListener( 'click', () => {
-			phase = 1;
-			setPhase(false);
-		}	)
-		gifBtn.addEventListener( 'click', () => {
-			phase < 4 ? phase++ : phase = 1;
-			setPhase(true);
-		}	)
-/*	Funciones Asincronas	*/
-	// 	Consultar Webcam
-		async function startGif() {
-			const stream = await navigator.mediaDevices.getUserMedia({
-				audio: false,
-				video: { max: 480 }
-			}	);
-			gifMedia.srcObject = stream;
-			await gifMedia.play();
-		}
-	//	Comenzar Grabacion
-		async function recGif() {
-			const stream = gifMedia.srcObject;
-			videoRecorder = new RecordRTCPromisesHandler(stream, {
-				type: "video",
-				mimeType: "video/webm; codecs=vp8",
-				disableLogs: true,
-				videoBitsPerSecond: 128000,
-				frameRate: 30,
-				quality: 10,
-				width: 480,
-				hidden: 240
-			});
-			gifRecorder = new RecordRTCPromisesHandler(stream, {
-				disableLogs: true,
-				type: "gif",
-				frameRate: 1,
-				quality: 10,
-				width: 480,
-				hidden: 240
-			});
-			await videoRecorder.startRecording();
-			await gifRecorder.startRecording();
-			videoRecorder.stream = stream;
-		}
-	// 	Detener Grabacion
-		async function stopGif() {
-		//	Carga de boxenido
-			await videoRecorder.stopRecording();
-			await gifRecorder.stopRecording();
-			const videoBlob = await videoRecorder.getBlob();
-			const gifBlob = await gifRecorder.getBlob();
-		// 	Formato de Salida
-			gifMedia.src = URL.createObjectURL(videoBlob);
-			videoRecorder.stream.getTracks().forEach(t => t.stop());
-			gifMedia.srcObject = null;
-		// 	Reiniciar Parametros
-			await videoRecorder.reset();
-			await videoRecorder.destroy();
-			await gifRecorder.reset();
-			await gifRecorder.destroy();
-		//	Limpieza de boxenido
-			gifSrc = await gifBlob;
-			gifView.src = URL.createObjectURL(await gifBlob);
-			gifRecorder = null;
-			videoRecorder = null;
-		}
-	//	Subir Gif Animado
-		async function uploadGif() {
-		//	Iniciando Carga
-			console.log("***comenzando subida***");
-			const formData = new FormData();
-			formData.append("file", gifSrc, "api_Gifo.gif");
-				const params = {
-					method: "POST",
-					body: formData,
-					json: true
-			};
-		// Consulta URL Subida
-			const data = await fetchURL(`${uploadURL}?api_key=${apiKey}`, params);
-			console.log(await data);
-			console.log("***subida exitosa***");
-			id = data.data.id;
-			item = data.data;
-			addStorage(id, item, false, true);
+	/*Creacion de Gifs*/
+		// 	Proceso de Grabacion
+			recAgain.addEventListener( 'click', () => {
+				phase = 1;
+				setPhase(false);
+			}	)
+			gifBtn.addEventListener( 'click', () => {
+				phase < 4 ? phase++ : phase = 1;
+				setPhase(true);
+			}	)
+		// 	Consultar Webcam
+			async function startGif() {
+				const stream = await navigator.mediaDevices.getUserMedia({
+					audio: false,
+					video: { max: 480 }
+				}	);
+				gifMedia.srcObject = stream;
+				await gifMedia.play();
 			}
-	//	Consulta API Giphy - UserId
-		const fetchURL = async(url, params = null) => {
-			const fetchData = await fetch(url, params);
-			const response = await fetchData.json();
-			return response		
-		};
+		//	Comenzar Grabacion
+			async function recGif() {
+				const stream = gifMedia.srcObject;
+				videoRecorder = new RecordRTCPromisesHandler(stream, {
+					type: "video",
+					mimeType: "video/webm; codecs=vp8",
+					disableLogs: true,
+					videoBitsPerSecond: 128000,
+					frameRate: 30,
+					quality: 10,
+					width: 480,
+					hidden: 240
+				});
+				gifRecorder = new RecordRTCPromisesHandler(stream, {
+					disableLogs: true,
+					type: "gif",
+					frameRate: 1,
+					quality: 10,
+					width: 480,
+					hidden: 240
+				});
+				await videoRecorder.startRecording();
+				await gifRecorder.startRecording();
+				videoRecorder.stream = stream;
+			}
+		// 	Detener Grabacion
+			async function stopGif() {
+			//	Carga de contenido
+				await videoRecorder.stopRecording();
+				await gifRecorder.stopRecording();
+				const videoBlob = await videoRecorder.getBlob();
+				const gifBlob = await gifRecorder.getBlob();
+			// 	Formato de Salida
+				gifMedia.src = URL.createObjectURL(videoBlob);
+				videoRecorder.stream.getTracks().forEach(t => t.stop());
+				gifMedia.srcObject = null;
+			// 	Reiniciar Parametros
+				await videoRecorder.reset();
+				await videoRecorder.destroy();
+				await gifRecorder.reset();
+				await gifRecorder.destroy();
+			//	Limpieza de contenido
+				gifSrc = await gifBlob;
+				gifView.src = URL.createObjectURL(await gifBlob);
+				gifRecorder = null;
+				videoRecorder = null;
+			}
+		//	Subir Grabacion
+			async function uploadGif() {
+			//	Iniciando Carga
+				alert("***comenzando subida***");
+				const formData = new FormData();
+				formData.append("file", gifSrc, "api_Gifo.gif");
+					const params = {
+						method: "POST",
+						body: formData,
+						json: true
+				};
+			// 	Consulta URL Subida
+				const data = await fetchURL(`${uploadURL}?api_key=${apiKey}`, params);
+				console.log(await data);
+				alert("***subida exitosa***");
+				id = data.data.id;
+				item = data.data;
+				addStorage(id, 'gif_');
+				}
+		//	Consulta API - Gif_Id
+			const fetchURL = async(url, params = null) => {
+				const fetchData = await fetch(url, params);
+				const response = await fetchData.json();
+				return response		
+			};
 /* 	Acciones del Usuario */
 	//	Botones de Accion
 		const userActions = () => {			
-			likeHit.forEach( (like , i) => like.addEventListener( 'click', (e) => { 
+			likeHit.forEach( (like) => like.addEventListener( 'click', () => { 
 				totalItems(like);
-				box.id.includes('fav_') ? 
-					remStorage(box.id.slice(4)) : 
-					localStorage.getItem(box.id) ? 
-						remStorage(box.id) : 
-						addStorage(box.id, item, true);
-				like.classList.contains('active') ? like.classList.add('active') : like.classList.remove('active');
-				loadStorage();
+				box.parentNode.parentNode.id == 'favoritos' ? window.location.href="#favoritos" : null
+				box.id.includes('fav_') ? remStorage(id) : 
+				localStorage.getItem('fav_'+ box.id) ? remStorage('fav_' + box.id) : 
+					addStorage(box.id, 'fav_');
+				like.classList.toggle('active');
+			}	)	)
+			binHit.forEach( bin => bin.addEventListener( 'click', () => {
+				totalItems(bin);
+				remStorage(box.id)
 			}	)	)	
-			
-			openHit.forEach( ( open, i ) => open.addEventListener('click', (e) => {	
+			openHit.forEach( open  => open.addEventListener('click', (e) => {	
 				totalItems(open);
 				box.classList.toggle('active');
 				open.classList.toggle('max');
