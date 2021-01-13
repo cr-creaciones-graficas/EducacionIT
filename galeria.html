@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Fundamentos Web</title>
+</head>
+<body>
+	<div id="header">
+		<h1>Fundamentos Web</h1>
+		<p> &lt;HTML> &amp; {CSS}</p>
+		<div id="nav">
+			<ul>
+				<li><!-- Ruta relativa / Interna -->
+					<a href="index.html">Inicio</a>
+				</li>
+				<li><!-- Ruta ancla / Marcador -->
+					<a href="#">Galeria</a><!-- Comienzo -->		
+				</li>
+				<li><!-- Ruta ancla / marcador -->
+					<a href="#contacto">Contacto</a>
+				</li>
+				<li><!-- Ruta absoluta / Externa -->
+					<a href="https://github.com/c215714n/EducacionIT/tree/html-x-19hs" target="_blank">GitHub</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="main">
+		<h2>Reglas de Nomenclatura</h2>
+		<ul>
+			<li>
+				<strong>Evitar el uso de espacios </strong> ya que los mismos seran traducidos por el navegador como <em>el separador %20</em>, es decir que si tenemos un archivo con el nombre <em>"foto 01.jpg"</em> este sera interpretado como <em>"foto%2001.jpg"</em> determinando que el mismo no pudo ser encontrado. Se recomienda utilizar <strong> separadores de tipo guion (-_)</strong> ya que estos son interpretados sin problemas por el navegador.
+			</li>
+			<li>
+				<strong>Utilizar nombres que hagan referencia al uso o implementacion del archivo </strong>, debido a que facilita su aplicacion por parte del desarrollador. Evitar nombres genericos como <em>"foto_01.jpg"</em>, nombres automatizados como <em>"2021-01-13-2009100.jpg</em>" ya que en demasia resultan complejos. Por eso es aconsejable utilizar nombres como <em>"perritos_jugando.jpg"</em>.
+			</li>
+			<li>
+				<strong>Escribir los nombres en minusculas </strong> debido a que los servidores basan su sistema operativo en UNIX y este es <em>CaseSensitive, es decir, distingue entre mayusculas y minusculas</em>. Por lo tanto nombres como <em>"perritos_jugando.jpg", "Perritos_Jugando.jpg" y "PERRITOS_JUGANDO.jpg"</em> se consideran archivos diferentes.
+			</li>
+		</ul>
+		<div class="example">
+			<img style="width: 300px;" 
+				src="img/jjba-silverchariot-01.jpg" 
+				alt="Dibujo Silver Chariot" />
+			<img style="width: 300px;"
+				src="img/jjba-silverchariot-02.jpg" 
+				alt="Dibujo Silver Chariot" />
+			<img style="width: 300px;"
+				src="img/jjba-silverchariot-04.jpg" 
+				alt="Dibujo Silver Chariot" />
+		</div>
+	</div>
+	<div id="footer">
+		<p></p>
+	</div>
+</body>
+</html>
