@@ -80,7 +80,7 @@ nav
 	+normalize($p: .5rem 0)
 	position: sticky
 	top: 0
-	z-index: 2
+	z-index: 3
 	border-top: .2rem solid $color
 	display: flex
 	flex-wrap: wrap
@@ -126,7 +126,7 @@ nav
 			@media screen and (min-width: $md)
 				border-bottom: .2rem solid transparent
 				&:not(:last-child):hover
-					border-bottom: .2rem solid $special_color
+					border-color: $special_color
 			&.active a
 				@media screen and (min-width: $md)
 					+mode(darken($bg_color, 20%), transparent)
@@ -333,7 +333,7 @@ main
 		button.selected
 			position: fixed
 			top: calc(50% - 1rem)
-			z-index: 5
+			z-index: 2
 	.title
 		+normalize
 		font-size: 2rem
@@ -373,6 +373,7 @@ main
 				height: 4rem
 				background: $tape
 				background-size: contain
+				z-index: -2
 				@media screen and (min-width: $lg)
 					right: -20%
 		/*area de grabacion*/
@@ -476,14 +477,15 @@ main
 			overflow: hidden
 	/*gifs populares*/
 	#trending
-		overflow: auto
-		max-height: 250px
-		display: grid
-		grid-template-columns: repeat(3, 250px)
-		justify-content: flex-start
-		align-content: center
-		@media screen and (min-width: $md)
-			justify-content: center
+		& > div
+			overflow: auto
+			max-height: 250px
+			display: grid
+			grid-template-columns: repeat(3, 250px)
+			justify-content: flex-start
+			align-content: center
+			@media screen and (min-width: $lg)
+				justify-content: center
 	/*elementos independientes*/
 	article:not(.active)
 		overflow: hidden
@@ -510,8 +512,24 @@ main
 				position: absolute
 				top: .5rem
 				right: .5rem
+				a
+					position: relative
+					z-index: 2
+				.max
+					position: absolute
+					right: -1rem
+					top: -1rem
+					width: 400px
+					height: 400px
+					opacity: 0
+					z-index: 1
+					@media screen and (min-width: $md)
+						position: static
+						width: auto
+						height: auto
+						opacity: 1
 			p
-				max-width: 70%
+				max-width: 60%
 				+normalize(0, none, .2rem)
 				text-align: left
 		&:hover,
@@ -538,19 +556,18 @@ main
 		img
 			position: relative
 			+normalize(4.2rem auto .5rem, 0, 0)
-			width: 100%
+			width: auto
+			height: 100%
 			max-width: 480px
 			max-height: 360px
 		.hidden
+			+normalize(.5rem, none, .5rem)
 			position: static
 			display: flex
 			justify-content: space-between
 			width: 100%
 			max-width: 480px
 			text-align: left
-			a
-				width: 2rem
-				height: 2rem
 			.close
 				position: fixed
 				top: 1rem
@@ -599,19 +616,17 @@ main
 		.menu
 			+mode($bg_color: darken($bg_color, 20%))
 			@media screen and (min-width: $md)
-				
-			li
-				+mode($color, $bg_color)
+				+mode($color, transparent)
 				a
-					color: $color
+					+mode($color, transparent)
 				&:first-child
 					label:after
 						content:' Nocturno'
 				&:last-child a:hover,
-				&.active:last-child a
-					+mode($bg_color, $color)
-				&.active a
-					+mode(darken($color, 20%), transparent)
+				.active:last-child a
+					+mode(lighten($bg_color, 20%), transparent)
+				.active a
+					+mode(darken($color, 25%), transparent)
 	/*cabecera*/
 	& ~ #header
 		+mode($color, $bg_color)
