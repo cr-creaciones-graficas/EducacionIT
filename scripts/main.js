@@ -1,11 +1,11 @@
 /* Datos de Aplicacion */
 	//	URLs Conexion	
-		const searchURL	= 'https://api.giphy.com/v1/gifs/search';
-		const tagsURL	= 'https://api.giphy.com/v1/tags/related/'
-		const trendURL 	= 'https://api.giphy.com/v1/gifs/trending';
-		const uploadURL = 'https://upload.giphy.com/v1/gifs';
-		const idURL		= 'https://api.giphy.com/v1/gifs/'
-		const apiKey 	= 'LanYkWCgNLIRDm6XZOZWnYH9yZHOProA';
+		const idURL		= `https://api.giphy.com/v1/gifs`
+		const searchURL	= `${idURL}/search`
+		const tagsURL	= `${idURL}/related`
+		const trendURL 	= `${idURL}/trending`
+		const uploadURL = `https://upload.giphy.com/v1/gifs`
+		const apiKey 	= `LanYkWCgNLIRDm6XZOZWnYH9yZHOProA`
 	// 	Parametros
 		let url, limit  = 3, offset = 0, phase;
 		let total, pages, msg = 'favs';
@@ -36,6 +36,7 @@
 		const gifMedia 	= document.querySelector('#crear_gifo article video');
 		const gifView	= document.querySelector('#crear_gifo article img');
 		const recAgain	= document.querySelector('#crear_gifo .menu a');
+		const recMsg	= document.querySelector('#crear_gifo .message')
 	//	Seccion de Favoritos
 		const favArea 	= document.querySelector('#favoritos div');
 		const noFavs 	= document.querySelector('#favoritos .noItems');
@@ -58,29 +59,22 @@
 			const showGifs = (item, type) => (
 				`<article id="${type == 'result' ? item.id : type + item.id}" 
 					class="${type == 'fav_' ? 'favorite' : type == 'gif_' ? 'mygifo' : 'result'}">
-					<img class="${type == 'fav_' ? 'favorite' : type == 'gif_' ? 'mygifo' : 'result'}" 
-						src="${ item.images.fixed_height_downsampled.url }" 
-						alt="${ item.title }"
-						title="${ item.username }"
-					ismap />
+					<img src="${ item.images.fixed_height_downsampled.url }" alt="${ item.title }" ismap />
 					${showActions(item, type)}
 				</article>`
 			);
-			const showActions = (item, type) => (
+			const showActions = (item, type, upload = false) => (
 				`<div class="hidden">
 					<p>
-						${item.username ? item.username : 'anonymous'}
-						<br />
+						${item.username ? item.username : 'anonymous'}<br />
 						<strong>${item.title ? item.title : 'untitled'}</strong>
 					</p>
 					<div class="social">
-						<a class="icon ${ type == 'gif_' ? 'trash' : 
-							type == 'fav_' ? ' fav active' : 'fav'}">
-						</a>
-						<a href="${item.img ? item.img : item.images.fixed_height.url}" 
-							class="icon download" target="_blank" download>
-						</a>
-						<a class="icon max"></a>
+						${upload ? '' : `<a class="icon ${ type == 'gif_' ? 'trash' : 
+							type == 'fav_' ? ' fav active' : 'fav'}"></a>`}
+						<a class="icon download" href="${item.images.fixed_height.url}" 
+							target="_blank" download></a>
+						<a class="icon ${upload ? 'link' : 'max'}"></a>
 					</div>
 				</div>`
 			)
@@ -143,39 +137,66 @@
 			    recAgain.innerHTML = `Repetir Captura`
 			}
 		//	Creacion de Gif	
+			const showPhase = (phase) => {
+				switch (phase) {
+					case 1:
+						msgTitle = `Aqui podras<br/>crear tus propios <span class="special">GIFOS</span>`
+						msg = `¡Crea tu GIFO en sólo 3 pasos!<br/>(Sólo necesitas una cámara para grabar un video)`
+					break;
+					case 2:
+						msgTitle = `¿Nos das acceso <br/>a tu cámara?`
+						msg = `El acceso a tu camara será valido solo<br/>por el tiempo en el que estes creando el GIFO`
+					break;
+					case 3:
+						msgTitle = `class="loader"`
+						msg = `Estamos subiendo tu GIFO`
+					break;
+					case 4:
+						msgTitle = `class="check"`
+						msg = `GIFO subido con éxito`
+					break; 
+				}
+				recMsg.innerHTML = `
+					<h1 ${phase >= 3 ? msgTitle + '>' : '>' + msgTitle }
+					</h1>
+					<p>${msg}</p>
+					${phase == 4 ? showActions(item, upload = true) : ''}
+					`
+			}
 			const setPhase = (type) => {
 				//	Etapas de Grabacion
 					switch(phase){
 						case 1:
-							startGif();	
-							gifBtn.innerHTML = 'Grabar';
-							gifMedia.classList.add('show'); 
-							gifView.classList.remove('show'); 
-							break;
+							showPhase(2)
+							gifBtn.innerHTML = 'Grabar'
+							startGif()
+							gifMedia.classList.add('show')
+							gifView.classList.remove('show')
+							break
 						case 2:
-							recGif(); 
-							gifBtn.innerHTML = 'Finalizar';
-							timeStart();
+							timeStart()
+							gifBtn.innerHTML = 'Finalizar'
+							recGif()
 							break;
 						case 3:
-							stopGif(); 
-							gifBtn.innerHTML = 'Subir';
-							gifMedia.classList.toggle('show');
-							gifView.classList.toggle('show');
-							timeStop();
+							timeStop()
+							gifBtn.innerHTML = 'Subir'
+							stopGif()
+							gifMedia.classList.toggle('show') 
+							gifView.classList.toggle('show') 
 							break;
 						case 4:
-							question = confirm('¿deseas subir el GIF?')
-								question? uploadGif(): null 		
-								gifBtn.innerHTML = 'Comenzar'
-								gifMedia.classList.toggle('show'); 
-								gifView.classList.toggle('show'); 
-								phase = 1;
-								type = false;
-							break;
+							uploadGif()
+							recMsg.classList.toggle('active')
+							recMsg.classList.toggle('show')
+							gifBtn.innerHTML = 'Comenzar'
+						break;
+						default:
+							phase = 1
+							type = false
+						break;
 					}
 				//	Asignacion de Clases
-					stageArea[phase - 1].classList.add('active')
 					switch (type){
 						case true:
 							phase > 1 ? 
@@ -185,9 +206,9 @@
 							for(i = 0 ; i < stageArea.length; i++){
 								stageArea[i].classList.remove('active')
 							}
-							stageArea[phase - 1].classList.add('active')
 							break;
 					}
+					phase < 4 stageArea[phase - 1].classList.add('active')
 			}
 	/*	NAVEGACION	*/
 		//	Menu hamburguesa
@@ -211,6 +232,7 @@
 			localStorage.getItem('mode') == 'false' ? 
 				modeItem.checked = true : modeItem.checked = false
 			url = `${trendURL}?api_key=${apiKey}&limit=${limit}&rating=g`
+			showPhase(1)
 			fetchAPI(url, trendArea, showGifs)
 		}	)
 	/*	ALMACEN DE DATOS	*/
@@ -302,6 +324,7 @@
 				}	);
 				gifMedia.srcObject = stream;
 				await gifMedia.play();
+				recMsg.classList.toggle('show')
 			}
 		//	Comenzar Grabacion
 			const recGif = async() => {
@@ -353,7 +376,7 @@
 		//	Subir Grabacion
 			const uploadGif = async() => {
 			//	Iniciando Carga
-				alert("***comenzando subida***");
+				showPhase(3)
 				const formData = new FormData();
 				formData.append("file", gifSrc, "api_Gifo.gif");
 					const params = {
@@ -362,18 +385,20 @@
 						json: true
 				};
 			// 	Consulta URL Subida
-				const data = await fetchURL(`${uploadURL}?api_key=${apiKey}`, params);
-				console.log(await data);
-				alert("***subida exitosa***");
-				id = data.data.id;
-				item = data.data;
+				const response = await fetchURL(`${uploadURL}?api_key=${apiKey}`, params)	
+				showPhase(4)
+				console.log(await response)
+				id = response.data.id
+				item = response.data
 				addStorage(id, 'gif_');
+				gifMedia.classList.toggle('show')
+				gifView.classList.toggle('show')
 				}
 		//	Consulta API - Gif-Id
 			const fetchURL = async(url, params = null) => {
 				const fetchData = await fetch(url, params);
-				const response = await fetchData.json();
-				return response		
+				const response = await fetchData.json();	
+				return response
 			};
 /* 	ACCIONES DE USUARIO */
 	//	Botones de Accion
@@ -381,16 +406,16 @@
 			//	Agregar/Quitar Like
 				likeHit.forEach( (like) => like.onclick = () => { 
 					totalItems(like)
-					box.id.includes('fav_') ? 
-						remStorage(id) : localStorage.getItem('fav_'+ box.id) ? 
-						remStorage('fav_' + box.id) : addStorage(box.id, 'fav_')
-					like.classList.toggle('active')
-					setInterval(loadStorage, 10000)
+					box.classList.contains('favorite') ?
+						remStorage(box.id) : like.classList.toggle('active') ?
+						addStorage(box.id, 'fav_') : remStorage('fav_' + box.id)
+					container = box.parentNode ? alert (container) : alert('no hay')
 				}	)
 			//	Remover Gif
 				binHit.forEach( bin => bin.onclick = () => {
 					totalItems(bin)
 					remStorage(box.id)
+					location.reload()
 				}	)
 			//	Maximizar	
 				openHit.forEach( open  => open.onclick = () => {	
@@ -401,6 +426,7 @@
 					prevItem.classList.toggle('selected')
 					nextItem.classList.toggle('selected')
 				}	)	
+
 			likeHit = document.querySelectorAll('.fav')
 			binHit	= document.querySelectorAll('.trash')
 			openHit = document.querySelectorAll('.max')	
