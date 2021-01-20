@@ -305,7 +305,9 @@ main
 			line-height: 2.5rem
 		&:not(target)
 			display: none
-		&:target
+		&:target,
+		&:first-child,
+		&:last-child
 			display: block
 	/*elementos populares*/
 	section:last-child
@@ -339,9 +341,6 @@ main
 		font-size: 2rem
 		&:empty ~ #pagination
 			display: none
-	/*resultados de busqueda*/
-	#search
-		display: block
 	/*creacion gif*/
 	#crear_gifo
 		overflow: hidden
@@ -414,6 +413,10 @@ main
 					font-size: .9rem
 				.loader::before
 					content: url($icon+'loader.svg')
+					animation: load 1s ease
+					@keyframes load
+						to
+							transform: rotate(360deg)
 				.check::before
 					content: url($icon+'check.svg')
 				&.active
@@ -459,7 +462,7 @@ main
 			opacity: 1
 			z-index: 2
 	/*area de resultados*/
-	#results
+	#results > div
 		overflow: hidden
 		display: grid
 		grid-template-columns: repeat(auto-fill, minmax(200px, 2fr))
@@ -490,20 +493,19 @@ main
 			gap: .5rem
 		.noItems
 			display: block
-		&:target #search
+		&:target  #search
 			height: 0
 			overflow: hidden
 	/*gifs populares*/
-	#trending
-		& > div
-			overflow: auto
-			max-height: 250px
-			display: grid
-			grid-template-columns: repeat(3, 250px)
-			justify-content: flex-start
-			align-content: center
-			@media screen and (min-width: $lg)
-				justify-content: center
+	#trending > div
+		overflow: auto
+		max-height: 250px
+		display: grid
+		grid-template-columns: repeat(3, 250px)
+		justify-content: flex-start
+		align-content: center
+		@media screen and (min-width: $lg)
+			justify-content: center
 	/*elementos independientes*/
 	article:not(.active)
 		overflow: hidden
@@ -526,6 +528,7 @@ main
 			bottom: 100%
 			left: 0
 			right: 0
+			width: 100%
 			.social
 				position: absolute
 				top: .5rem
@@ -547,7 +550,6 @@ main
 						height: auto
 						opacity: 1
 			p
-				max-width: 60%
 				+normalize(0, none, .2rem)
 				text-align: left
 		&:hover,
@@ -590,7 +592,8 @@ main
 				position: fixed
 				top: 1rem
 				right: 1rem
-	video, img
+	video, 
+	img
 		height: 100%
 	/*localStorage*/
 	.fav.active
@@ -675,6 +678,10 @@ main
 			article
 				+mode($color, $bg_color)
 				+normalize(auto, 1px solid $color, 1.5rem)
+				.hidden
+					top: 0
+					bottom: 0
+					width: 100% !important
 			.menu 
 				border-color: $color
 				li
@@ -682,7 +689,6 @@ main
 					border-color: $color
 				.active
 					+mode($bg_color, $color)
-
 		article.active
 			+mode($color, $bg_color)
 			.menu

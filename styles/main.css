@@ -545,7 +545,6 @@ main {
   padding: 0;
   /*secciones de pagina*/
   /*elementos populares*/
-  /*resultados de busqueda*/
   /*creacion gif*/
   /*area de resultados*/
   /*area de paginacion*/
@@ -580,7 +579,7 @@ main section h1 {
 main section:not(target) {
   display: none;
 }
-main section:target {
+main section:target, main section:first-child, main section:last-child {
   display: block;
 }
 main section:last-child {
@@ -632,9 +631,6 @@ main .title {
 }
 main .title:empty ~ #pagination {
   display: none;
-}
-main #search {
-  display: block;
 }
 main #crear_gifo {
   overflow: hidden;
@@ -737,6 +733,12 @@ main #crear_gifo article .message p {
 }
 main #crear_gifo article .message .loader::before {
   content: url("../assets/icons/loader.svg");
+  animation: load 1s ease;
+}
+@keyframes load {
+  to {
+    transform: rotate(360deg);
+  }
 }
 main #crear_gifo article .message .check::before {
   content: url("../assets/icons/check.svg");
@@ -801,7 +803,7 @@ main #crear_gifo .show {
   opacity: 1;
   z-index: 2;
 }
-main #results {
+main #results > div {
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
@@ -883,6 +885,7 @@ main article:not(.active) .hidden {
   bottom: 100%;
   left: 0;
   right: 0;
+  width: 100%;
 }
 main article:not(.active) .hidden .social {
   position: absolute;
@@ -911,7 +914,6 @@ main article:not(.active) .hidden .social .max {
   }
 }
 main article:not(.active) .hidden p {
-  max-width: 60%;
   margin: 0;
   border: none;
   padding: 0.2rem;
@@ -968,7 +970,8 @@ main article.active .hidden .close {
   top: 1rem;
   right: 1rem;
 }
-main video, main img {
+main video,
+main img {
   height: 100%;
 }
 main .fav.active {
@@ -1108,6 +1111,11 @@ main .fav.active {
   margin: auto;
   border: 1px solid #ccc;
   padding: 1.5rem;
+}
+#mode:checked ~ main #crear_gifo article .hidden {
+  top: 0;
+  bottom: 0;
+  width: 100% !important;
 }
 #mode:checked ~ main #crear_gifo .menu {
   border-color: #ccc;

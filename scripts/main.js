@@ -1,9 +1,9 @@
 /* Datos de Aplicacion */
 	//	URLs Conexion	
-		const idURL		= `https://api.giphy.com/v1/gifs`
-		const searchURL	= `${idURL}/search`
-		const tagsURL	= `${idURL}/related`
-		const trendURL 	= `${idURL}/trending`
+		const idURL		= `https://api.giphy.com/v1/`
+		const searchURL	= `${idURL}gifs/search`
+		const tagsURL	= `${idURL}tags/related/`
+		const trendURL 	= `${idURL}gifs/trending`
 		const uploadURL = `https://upload.giphy.com/v1/gifs`
 		const apiKey 	= `LanYkWCgNLIRDm6XZOZWnYH9yZHOProA`
 	// 	Parametros
@@ -27,7 +27,7 @@
 		const dataList 	= document.querySelector('#suggestion')
 	//	Area de Resultados
 		const titleArea = document.querySelector('section h1')
-		const gifsArea 	= document.querySelector('#results')
+		const gifsArea 	= document.querySelector('#results div')
 		const pageArea 	= document.querySelector('#pagination')
 		const trendArea = document.querySelector('#trending div');
 	//	Seccion de Grabacion
@@ -45,14 +45,13 @@
 		const noGifs	= document.querySelector('#mis_gifos .noItems')
 /*	Funciones y Metodos	*/
 	//	Consulta API Giphy
-		async function fetchAPI(url, editArea, buildArea, type = 'result') { 
+		const fetchAPI = (url, editArea, buildArea, type = 'result') => { 
 			fetch(url).then( response => response.json()
 				.then( async giphy => { 
-					giphy.pagination ? total = giphy.pagination.total_count : null;
+					giphy.pagination ? total = giphy.pagination.total_count : null
 					giphy.data.forEach( item => editArea.innerHTML += buildArea(item, type) )
-					showPages(url, total);
-					loadStorage();
-					userActions();
+					showPages(url, total)
+					loadStorage()
 		}	)	)	};
 	/*	COMPONENTES	*/
 		//	Resultados de Busqueda
@@ -74,7 +73,7 @@
 							type == 'fav_' ? ' fav active' : 'fav'}"></a>`}
 						<a class="icon download" href="${item.images.fixed_height.url}" 
 							target="_blank" download></a>
-						<a class="icon ${upload ? 'link' : 'max'}"></a>
+						<a class="icon ${ upload ? 'link' : 'max' }"></a>
 					</div>
 				</div>`
 			)
@@ -208,20 +207,20 @@
 							}
 							break;
 					}
-					phase < 4 stageArea[phase - 1].classList.add('active')
+					phase < 4 ? stageArea[phase - 1].classList.add('active') : null
 			}
 	/*	NAVEGACION	*/
 		//	Menu hamburguesa
 			menuBtn.addEventListener( 'click', () => { 
-				menuList.classList.toggle('open');
-				menuList.classList.contains('open')? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;';
+				menuList.classList.toggle('open')
+				menuList.classList.contains('open')? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;'
 			}	);
 		//	Item Activo
-			menuItem.forEach( (item, i) => item.addEventListener(
+			menuItem.forEach( (item, I) => item.addEventListener(
 				'click', () => {
-					for(li = 1 ; li < menuItem.length; li++){
-						li === i ? menuItem[li].classList.toggle('active') : 
-							menuItem[li].classList.remove('active');
+					for(i = 1 ; i < menuItem.length; i++){
+						i === I ? menuItem[i].classList.toggle('active') : 
+							menuItem[i].classList.remove('active')
 			}	}	)	)
 		//	Registro de Modo
 			modeLabel.addEventListener( 'click', () => {
@@ -257,14 +256,11 @@
 						}	}	} 	 
 				totalGifs.length == 0 ? noResults(noGifs, 'gifs') : noGifs.innerHTML = ``
 				totalFavs.length == 0 ? noResults(noFavs, 'favs') : noFavs.innerHTML = ``
-			//	Recarga de elementos
-				likeHit = document.querySelectorAll('.fav')
-				binHit	= document.querySelectorAll('.trash')
-				openHit = document.querySelectorAll('.max')
+				userActions()
 				}
 		//	Agregar Item
 			const addStorage = async (id, type) => {
-				const response = await fetchURL(`${idURL+id}?api_key=${apiKey}`);
+				const response = await fetchURL(`${idURL}gifs/${id}?api_key=${apiKey}`);
 				const data = JSON.stringify(response.data);
 				localStorage.setItem(type + id, data);
 				loadStorage();
@@ -279,7 +275,7 @@
 			textField.addEventListener( 'input', () => {
 				if(textField.checkValidity()){
 					termino = textField.value
-					url = `${tagsURL}${termino}?api_key=${apiKey}&lang=es`
+					url = `${tagsURL+termino}?api_key=${apiKey}&lang=es`
 					dataList.innerHTML = ``
 					fetchAPI(url, dataList, showOptions)
 			}	}	)
@@ -390,7 +386,7 @@
 				console.log(await response)
 				id = response.data.id
 				item = response.data
-				addStorage(id, 'gif_');
+				addStorage(id, 'gif_', true);
 				gifMedia.classList.toggle('show')
 				gifView.classList.toggle('show')
 				}
@@ -402,14 +398,17 @@
 			};
 /* 	ACCIONES DE USUARIO */
 	//	Botones de Accion
-		const userActions = () => {		
+		const userActions = () => {	
+			//	Recarga de elementos
+				likeHit = document.querySelectorAll('.fav')
+				binHit	= document.querySelectorAll('.trash')
+				openHit = document.querySelectorAll('.max')	
 			//	Agregar/Quitar Like
 				likeHit.forEach( (like) => like.onclick = () => { 
 					totalItems(like)
 					box.classList.contains('favorite') ?
 						remStorage(box.id) : like.classList.toggle('active') ?
 						addStorage(box.id, 'fav_') : remStorage('fav_' + box.id)
-					container = box.parentNode ? alert (container) : alert('no hay')
 				}	)
 			//	Remover Gif
 				binHit.forEach( bin => bin.onclick = () => {
@@ -426,10 +425,6 @@
 					prevItem.classList.toggle('selected')
 					nextItem.classList.toggle('selected')
 				}	)	
-
-			likeHit = document.querySelectorAll('.fav')
-			binHit	= document.querySelectorAll('.trash')
-			openHit = document.querySelectorAll('.max')	
 		}
 	//	Contenedores
 		const totalItems = (param) => { 
