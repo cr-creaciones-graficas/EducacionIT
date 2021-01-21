@@ -5,6 +5,7 @@
 		const tagsURL	= `${idURL}tags/related/`
 		const trendURL 	= `${idURL}gifs/trending`
 		const uploadURL = `https://upload.giphy.com/v1/gifs`
+		const gifURL	= `https://media.giphy.com/media/`
 		const apiKey 	= `LanYkWCgNLIRDm6XZOZWnYH9yZHOProA`
 	// 	Parametros
 		let url, limit  = 3, offset = 0, phase;
@@ -14,13 +15,13 @@
 		let totalGifs = [], totalFavs = []
 /*	Areas de Eventos	*/
 	//	Elementos de Navegacion
-		const menuBtn	= document.querySelector('#menu');
-		const menuList	= document.querySelector('.menu');
-		const menuItem	= document.querySelectorAll('.menu li');
+		const menuBtn	= document.querySelector('#menu')
+		const menuList	= document.querySelector('.menu')
+		const menuItem	= document.querySelectorAll('.menu li')
 		const modeItem	= document.querySelector('#mode')
 		const modeLabel	= document.querySelector('label[for="mode"]')
-		const prevItem	= document.querySelector('section:last-child > .prev');
-		const nextItem	= document.querySelector('section:last-child > .next');
+		const prevItem	= document.querySelector('section:last-child > .prev')
+		const nextItem	= document.querySelector('section:last-child > .next')
 	//	Formulario de Busqueda
 		const frmSearch	= document.querySelector('#search')
 		const textField = document.querySelector('#search input')
@@ -29,17 +30,17 @@
 		const titleArea = document.querySelector('section h1')
 		const gifsArea 	= document.querySelector('#results div')
 		const pageArea 	= document.querySelector('#pagination')
-		const trendArea = document.querySelector('#trending div');
+		const trendArea = document.querySelector('#trending div')
 	//	Seccion de Grabacion
-		const stageArea	= document.querySelectorAll('#crear_gifo .menu li');
-		const gifBtn 	= document.querySelector('#crear_gifo button');
-		const gifMedia 	= document.querySelector('#crear_gifo article video');
-		const gifView	= document.querySelector('#crear_gifo article img');
-		const recAgain	= document.querySelector('#crear_gifo .menu a');
+		const stageArea	= document.querySelectorAll('#crear_gifo .menu li')
+		const gifBtn 	= document.querySelector('#crear_gifo button')
+		const gifMedia 	= document.querySelector('#crear_gifo article video')
+		const gifView	= document.querySelector('#crear_gifo article img')
+		const recAgain	= document.querySelector('#crear_gifo .menu a')
 		const recMsg	= document.querySelector('#crear_gifo .message')
 	//	Seccion de Favoritos
-		const favArea 	= document.querySelector('#favoritos div');
-		const noFavs 	= document.querySelector('#favoritos .noItems');
+		const favArea 	= document.querySelector('#favoritos div')
+		const noFavs 	= document.querySelector('#favoritos .noItems')
 	//	Seccion mis Gifos
 		const gifArea	= document.querySelector('#mis_gifos div')
 		const noGifs	= document.querySelector('#mis_gifos .noItems')
@@ -61,19 +62,18 @@
 					<img src="${ item.images.fixed_height_downsampled.url }" alt="${ item.title }" ismap />
 					${showActions(item, type)}
 				</article>`
-			);
-			const showActions = (item, type, upload = false) => (
+			)
+			const showActions = (item, type, isGif) => (
 				`<div class="hidden">
 					<p>
 						${item.username ? item.username : 'anonymous'}<br />
 						<strong>${item.title ? item.title : 'untitled'}</strong>
 					</p>
 					<div class="social">
-						${upload ? '' : `<a class="icon ${ type == 'gif_' ? 'trash' : 
-							type == 'fav_' ? ' fav active' : 'fav'}"></a>`}
-						<a class="icon download" href="${item.images.fixed_height.url}" 
-							target="_blank" download></a>
-						<a class="icon ${ upload ? 'link' : 'max' }"></a>
+						${isGif ? '' : `<button class="icon ${ type == 'gif_' ? 'trash' : 
+							type == 'fav_' ? ' fav active' : 'fav'}"></button>`}
+						<button class="icon download"></button>
+						<button class="icon ${ isGif ? 'link' : 'max' }"></button>
 					</div>
 				</div>`
 			)
@@ -92,7 +92,7 @@
 							${ offset + limit <= total ? "VER MAS...": "NO HAY MAS RESULTADOS" }
 						</button>`
 				} else if (url.includes('search')){
-					noResults(pageArea, 'results');
+					noResults(pageArea, 'results')
 				}
 			}
 		//	Consejos y Sugerencias
@@ -100,7 +100,7 @@
 				`<option value="${item.name}">
 					${item.name}
 				</option>`
-			);	
+			)	
 			const noResults = (editArea, icon) => {
 				switch(icon){
 					case 'favs': 
@@ -119,8 +119,8 @@
 			}
 		//	Cronometro Grabacion
 			const timeStart = () => {
-				clock();
-				recTime = setInterval( clock , 999 );
+				clock()
+				recTime = setInterval( clock , 999 )
 			}
 			const clock = () => {
 			    var mAux, sAux;
@@ -131,7 +131,7 @@
 			    recAgain.innerHTML = `${mAux}:${sAux}`
 			}
 			const timeStop = () => {
-				clearInterval(recTime);
+				clearInterval(recTime)
 				m = 0; s = 0;
 			    recAgain.innerHTML = `Repetir Captura`
 			}
@@ -155,12 +155,11 @@
 						msg = `GIFO subido con éxito`
 					break; 
 				}
-				recMsg.innerHTML = `
-					<h1 ${phase >= 3 ? msgTitle + '>' : '>' + msgTitle }
-					</h1>
-					<p>${msg}</p>
-					${phase == 4 ? showActions(item, upload = true) : ''}
-					`
+				phase >= 3 ? recMsg.classList.add('active') : recMsg.classList.remove('active')
+				recMsg.innerHTML = ` 
+					<h1 ${phase >= 3 ? msgTitle + '>' : '>' + msgTitle }</h1>
+					<p>${msg}</p> 
+					${phase == 4 ? showActions(item, 'gif_', true) : ''}`
 			}
 			const setPhase = (type) => {
 				//	Etapas de Grabacion
@@ -186,7 +185,6 @@
 							break;
 						case 4:
 							uploadGif()
-							recMsg.classList.toggle('active')
 							recMsg.classList.toggle('show')
 							gifBtn.innerHTML = 'Comenzar'
 						break;
@@ -214,7 +212,7 @@
 			menuBtn.addEventListener( 'click', () => { 
 				menuList.classList.toggle('open')
 				menuList.classList.contains('open')? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;'
-			}	);
+			}	)
 		//	Item Activo
 			menuItem.forEach( (item, I) => item.addEventListener(
 				'click', () => {
@@ -256,18 +254,33 @@
 						}	}	} 	 
 				totalGifs.length == 0 ? noResults(noGifs, 'gifs') : noGifs.innerHTML = ``
 				totalFavs.length == 0 ? noResults(noFavs, 'favs') : noFavs.innerHTML = ``
+				for (i = 0; i < totalFavs.length ; i ++){
+					try{ 
+						isFav = totalFavs[i].slice(4)
+						document.getElementById(isFav) ?
+							document.getElementById(isFav).querySelector('.fav').classList.add('active'): null
+					} catch(error){
+						console.log(error)
+					}	
+				}
 				userActions()
 				}
 		//	Agregar Item
 			const addStorage = async (id, type) => {
-				const response = await fetchURL(`${idURL}gifs/${id}?api_key=${apiKey}`);
-				const data = JSON.stringify(response.data);
-				localStorage.setItem(type + id, data);
-				loadStorage();
+				const response = await fetchURL(`${idURL}gifs/${id}?api_key=${apiKey}`)
+				const data = JSON.stringify(response.data)
+				localStorage.setItem(type + id, data)
+				loadStorage()
 			} 
 		//	Remover Item
 			const remStorage = (id) => {
-				window.localStorage.removeItem( id );
+				window.localStorage.removeItem( id )
+				try{
+					notFav = id.slice(4)
+					document.getElementById(notFav) ? document.getElementById(notFav).querySelector('.fav').classList.remove('active') : null
+				} catch (error){
+					console.log(error)
+				} 
 				loadStorage()
 			}
 	/*	FORMULARIO	*/
@@ -317,9 +330,9 @@
 				const stream = await navigator.mediaDevices.getUserMedia({
 					audio: false,
 					video: { max: 480 }
-				}	);
+				}	)
 				gifMedia.srcObject = stream;
-				await gifMedia.play();
+				await gifMedia.play()
 				recMsg.classList.toggle('show')
 			}
 		//	Comenzar Grabacion
@@ -334,7 +347,7 @@
 					quality: 10,
 					width: 480,
 					hidden: 240
-				});
+				})
 				gifRecorder = new RecordRTCPromisesHandler(stream, {
 					disableLogs: true,
 					type: "gif",
@@ -342,30 +355,30 @@
 					quality: 10,
 					width: 480,
 					hidden: 240
-				});
-				await videoRecorder.startRecording();
-				await gifRecorder.startRecording();
+				})
+				await videoRecorder.startRecording()
+				await gifRecorder.startRecording()
 				videoRecorder.stream = stream;
 			}
 		// 	Detener Grabacion
 			const stopGif = async() => {
 			//	Carga de contenido
-				await videoRecorder.stopRecording();
-				await gifRecorder.stopRecording();
-				const videoBlob = await videoRecorder.getBlob();
-				const gifBlob = await gifRecorder.getBlob();
+				await videoRecorder.stopRecording()
+				await gifRecorder.stopRecording()
+				const videoBlob = await videoRecorder.getBlob()
+				const gifBlob = await gifRecorder.getBlob()
 			// 	Formato de Salida
-				gifMedia.src = URL.createObjectURL(videoBlob);
-				videoRecorder.stream.getTracks().forEach(t => t.stop());
+				gifMedia.src = URL.createObjectURL(videoBlob)
+				videoRecorder.stream.getTracks().forEach(t => t.stop())
 				gifMedia.srcObject = null;
 			// 	Reiniciar Parametros
-				await videoRecorder.reset();
-				await videoRecorder.destroy();
-				await gifRecorder.reset();
-				await gifRecorder.destroy();
+				await videoRecorder.reset()
+				await videoRecorder.destroy()
+				await gifRecorder.reset()
+				await gifRecorder.destroy()
 			//	Limpieza de contenido
 				gifSrc = await gifBlob;
-				gifView.src = URL.createObjectURL(await gifBlob);
+				gifView.src = URL.createObjectURL(await gifBlob)
 				gifRecorder = null;
 				videoRecorder = null;
 			}
@@ -373,8 +386,8 @@
 			const uploadGif = async() => {
 			//	Iniciando Carga
 				showPhase(3)
-				const formData = new FormData();
-				formData.append("file", gifSrc, "api_Gifo.gif");
+				const formData = new FormData()
+				formData.append("file", gifSrc, "api_Gifo.gif")
 					const params = {
 						method: "POST",
 						body: formData,
@@ -386,39 +399,70 @@
 				console.log(await response)
 				id = response.data.id
 				item = response.data
-				addStorage(id, 'gif_', true);
+				addStorage(id, 'gif_', true)
+				recMsg.id = id;
 				gifMedia.classList.toggle('show')
 				gifView.classList.toggle('show')
 				}
 		//	Consulta API - Gif-Id
 			const fetchURL = async(url, params = null) => {
-				const fetchData = await fetch(url, params);
-				const response = await fetchData.json();	
+				const fetchData = await fetch(url, params)
+				const response = await fetchData.json()	
 				return response
 			};
 /* 	ACCIONES DE USUARIO */
 	//	Botones de Accion
 		const userActions = () => {	
-			//	Recarga de elementos
+			//	Consulta Elementos
 				likeHit = document.querySelectorAll('.fav')
 				binHit	= document.querySelectorAll('.trash')
+				linkHit = document.querySelector('.link')
+				downHit = document.querySelectorAll('.download')
 				openHit = document.querySelectorAll('.max')	
-			//	Agregar/Quitar Like
-				likeHit.forEach( (like) => like.onclick = () => { 
-					totalItems(like)
+			//	Add / Remove Like
+				likeHit.forEach( like => like.onclick = () => { 
+					keyNodes(like)
 					box.classList.contains('favorite') ?
 						remStorage(box.id) : like.classList.toggle('active') ?
 						addStorage(box.id, 'fav_') : remStorage('fav_' + box.id)
 				}	)
-			//	Remover Gif
+			//	Remove Gif
 				binHit.forEach( bin => bin.onclick = () => {
-					totalItems(bin)
+					keyNodes(bin)
 					remStorage(box.id)
-					location.reload()
 				}	)
-			//	Maximizar	
+			//	Gif URL
+				if(linkHit){
+					linkHit.onclick = () => {
+					keyNodes(linkHit)
+					Object.assign( link = document.createElement('a'), { 
+							href: `${gifURL + box.id}/giphy.gif`, 
+							target: `_blank` 
+						}	)
+					document.body.appendChild(link)
+					link.click()
+					document.body.removeChild(link)
+					}
+				}
+			//	Download Gif
+				downHit.forEach( down => down.onclick = () => {
+					keyNodes(down)
+					linkURL = `${box.classList.contains('result') ? box.id : box.id.slice(4)}`
+					url = `${gifURL + linkURL}/giphy.gif`;
+					fetch(url).then(response => response.blob().then( giphy =>{
+						saveURL = URL.createObjectURL(giphy)
+						Object.assign( link = document.createElement('a'), { 
+							href: saveURL, 
+							download: `${item ? item.alt : 'mygif'}.gif` 
+						}	)
+					document.body.appendChild(link)
+					link.click()
+					document.body.removeChild(link)
+					} 	)	)
+				}	)
+			//	Open Gif	
 				openHit.forEach( open  => open.onclick = () => {	
-					totalItems(open)
+					keyNodes(open)
 					box.classList.toggle('active')
 					open.classList.toggle('max')
 					open.classList.toggle('close')
@@ -427,9 +471,9 @@
 				}	)	
 		}
 	//	Contenedores
-		const totalItems = (param) => { 
+		const keyNodes = (param) => { 
 			box = param.parentNode.parentNode.parentNode
-			item = param.parentNode.parentNode.parentNode.querySelector('img');
+			item = param.parentNode.parentNode.parentNode.querySelector('img')
 		}
 	//	Cambiar Vistas
 		nextItem.addEventListener('click', () => changeItem(nextItem,true))
@@ -459,10 +503,8 @@
 				}	
 			//	Minimizar y Maximizar
 				if(item.classList.contains('selected')){
-					nowItem.querySelector('.close').classList.add('max')
-					nowItem.querySelector('.max').classList.remove('close')
-					newItem.querySelector('.max').classList.add('close')
-					newItem.querySelector('.close').classList.remove('max')
+					nowItem.querySelector('.close').classList.replace('close','max')
+					newItem.querySelector('.max').classList.replace('max','close')
 					nowItem.classList.remove('active')
 					newItem.classList.add('active')
 				} else {
