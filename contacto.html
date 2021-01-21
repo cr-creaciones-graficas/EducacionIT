@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Fundamentos Web</title>
+	<link rel="icon" href="img/dices.png">
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 	<nav>
@@ -104,9 +106,34 @@
 		</article>
 	</main>
 	<footer id="footer">
-		<form action="" method="POST">
+		<form id="contacto" action="" method="POST">
 			<h2>Informacion de Contacto</h2>
-			<button>Enviar</button>
+			<label for="nombre">Nombre: </label>
+			<input 
+				id="nombre" 
+				name="nombre" 
+				type="text"
+				maxlength="50"
+				pattern="[A-Z a-z]{2,50}"
+				title="Ingrese su nombre completo sin numeros, ni simbolos. Este debe contar con al menos 2 caracteres" 
+				required 
+			/>
+			<label for="correo">Correo: </label>
+			<input 
+				id="correo"
+				name="correo" 
+				type="email"
+				required
+			/>
+			<label for="consulta">Consulta: </label>
+			<textarea 
+				id="consulta" 
+				name="consulta"
+				minlength="10"
+				maxlength="200" 
+				required
+			></textarea>
+			<button>ENVIAR</button>
 		</form>
 	</footer>
 </body>
