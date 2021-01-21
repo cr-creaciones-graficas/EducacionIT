@@ -269,8 +269,11 @@ nav
 		/*boton buscar*/	
 		button
 			position: absolute
+			top: .2rem
+			right: 1.25rem
+			width: 1.5rem
+			height: 1.5rem
 			z-index: 1
-			right: 1rem
 			outline: none
 		label
 			+mode(darken($bg_color, 20%), transparent)
@@ -430,7 +433,6 @@ main
 							+normalize(.25rem, 0, 0)
 							border-radius: .25rem
 							width: 2rem
-
 		&:target
 			display: flex
 		& div:last-child

@@ -65,7 +65,7 @@
 			)
 			const showActions = (item, type, isGif) => (
 				`<div class="hidden">
-					<p>
+					<p>	
 						${item.username ? item.username : 'anonymous'}<br />
 						<strong>${item.title ? item.title : 'untitled'}</strong>
 					</p>
@@ -83,10 +83,7 @@
 					pageArea.innerHTML =
 						`<ul>
 							<li><strong>Resultados</strong>${total}</li>
-							<li>
-								<strong>Paginas</strong> 
-								${ ( actual = (offset / 12) + 1 ) <= (pages = Math.ceil(total / 12)) ?actual : pages } / ${ pages }
-							</li>
+							<li><strong>Paginas</strong> ${ ( actual = (offset / 12) + 1 ) <= (pages = Math.ceil(total / 12)) ?actual : pages } / ${ pages }</li>
 						</ul>
 						<button class="button">
 							${ offset + limit <= total ? "VER MAS...": "NO HAY MAS RESULTADOS" }
@@ -104,13 +101,13 @@
 			const noResults = (editArea, icon) => {
 				switch(icon){
 					case 'favs': 
-						msg = `"¡guarda tu primer Gifo en favoritos <br/> para que se muestre aqui!"`; 
+						msg = `"¡guarda tu primer Gifo en favoritos <br/> para que se muestre aqui!"` 
 					break;
 					case 'results': 
-						msg = `"intenta con otra busqueda"`; 
+						msg = `"intenta con otra busqueda"`
 					break; 
 					case 'gifs': 
-						msg = `"Animate a crear tu primer GIFO"`; 
+						msg = `"Animate a crear tu primer GIFO"`
 					break;
 				}
 				editArea.innerHTML = `
@@ -119,152 +116,137 @@
 			}
 		//	Cronometro Grabacion
 			const timeStart = () => {
-				clock()
-				recTime = setInterval( clock , 999 )
+				clock(); recTime = setInterval( clock , 999 )
 			}
 			const clock = () => {
 			    var mAux, sAux;
-			    s++;
-			    if(s > 59){ m++; s=0 }
-			    s < 10 ? sAux = "0" + s : sAux=s;
-			    m < 10 ? mAux = "0" + m : mAux=m;
+			    s++; if(s > 59){ m++; s=0 }
+			    s < 10 ? sAux = "0" + s : sAux = s
+			    m < 10 ? mAux = "0" + m : mAux = m
 			    recAgain.innerHTML = `${mAux}:${sAux}`
 			}
 			const timeStop = () => {
 				clearInterval(recTime)
-				m = 0; s = 0;
-			    recAgain.innerHTML = `Repetir Captura`
+				m = 0; s = 0; recAgain.innerHTML = `Repetir Captura`
 			}
 		//	Creacion de Gif	
-			const showPhase = (phase) => {
-				switch (phase) {
-					case 1:
-						msgTitle = `Aqui podras<br/>crear tus propios <span class="special">GIFOS</span>`
-						msg = `¡Crea tu GIFO en sólo 3 pasos!<br/>(Sólo necesitas una cámara para grabar un video)`
-					break;
-					case 2:
-						msgTitle = `¿Nos das acceso <br/>a tu cámara?`
-						msg = `El acceso a tu camara será valido solo<br/>por el tiempo en el que estes creando el GIFO`
-					break;
-					case 3:
-						msgTitle = `class="loader"`
-						msg = `Estamos subiendo tu GIFO`
-					break;
-					case 4:
-						msgTitle = `class="check"`
-						msg = `GIFO subido con éxito`
-					break; 
-				}
-				phase >= 3 ? recMsg.classList.add('active') : recMsg.classList.remove('active')
-				recMsg.innerHTML = ` 
-					<h1 ${phase >= 3 ? msgTitle + '>' : '>' + msgTitle }</h1>
-					<p>${msg}</p> 
-					${phase == 4 ? showActions(item, 'gif_', true) : ''}`
-			}
-			const setPhase = (type) => {
-				//	Etapas de Grabacion
-					switch(phase){
+			//	Mensaje de Etapa
+				const showPhase = (phase) => {
+					switch (phase) {
 						case 1:
-							showPhase(2)
-							gifBtn.innerHTML = 'Grabar'
-							startGif()
-							gifMedia.classList.add('show')
-							gifView.classList.remove('show')
-							break
+							msgTitle = `Aqui podras<br/>crear tus propios <span class="special">GIFOS</span>`
+							msg = `¡Crea tu GIFO en sólo 3 pasos!<br/>(Sólo necesitas una cámara para grabar un video)`
+						break;
 						case 2:
-							timeStart()
-							gifBtn.innerHTML = 'Finalizar'
-							recGif()
-							break;
+							msgTitle = `¿Nos das acceso <br/>a tu cámara?`
+							msg = `El acceso a tu camara será valido solo<br/>por el tiempo en el que estes creando el GIFO`
+						break;
 						case 3:
-							timeStop()
-							gifBtn.innerHTML = 'Subir'
-							stopGif()
-							gifMedia.classList.toggle('show') 
-							gifView.classList.toggle('show') 
-							break;
+							msgTitle = `class="loader"`
+							msg = `Estamos subiendo tu GIFO`
+						break;
 						case 4:
-							uploadGif()
-							recMsg.classList.toggle('show')
-							gifBtn.innerHTML = 'Comenzar'
-						break;
-						default:
-							phase = 1
-							type = false
-						break;
+							msgTitle = `class="check"`
+							msg = `GIFO subido con éxito`
+						break; 
 					}
-				//	Asignacion de Clases
-					switch (type){
-						case true:
-							phase > 1 ? 
-								stageArea[phase - 2].classList.remove('active') : null
-							break;
-						case false:
-							for(i = 0 ; i < stageArea.length; i++){
-								stageArea[i].classList.remove('active')
-							}
-							break;
-					}
-					phase < 4 ? stageArea[phase - 1].classList.add('active') : null
+					phase >= 3 ? recMsg.classList.add('active') : recMsg.classList.remove('active')
+					recMsg.innerHTML = ` 
+						<h1 ${phase >= 3 ? msgTitle + '>' : '>' + msgTitle }</h1>
+						<p>${msg}</p> 
+						${phase == 4 ? showActions(item, 'gif_', true) : ''}`
+				}
+			const setPhase = (type) => {
+			//	Etapas de Grabacion
+				switch(phase){
+					case 1:
+						showPhase(2)
+						gifBtn.innerHTML = 'Grabar'
+						startGif()
+						gifMedia.classList.add('show')
+						gifView.classList.remove('show')
+						break
+					case 2:
+						timeStart()
+						gifBtn.innerHTML = 'Finalizar'
+						recGif()
+						break;
+					case 3:
+						timeStop()
+						gifBtn.innerHTML = 'Subir'
+						stopGif()
+						gifMedia.classList.toggle('show') 
+						gifView.classList.toggle('show') 
+						break;
+					case 4:
+						uploadGif()
+						recMsg.classList.toggle('show')
+						gifBtn.innerHTML = 'Comenzar'
+					break;
+					default:
+						phase = 1
+						type = false
+					break;
+				}
+			//	Asignacion de Clases
+				switch (type){
+					case true:
+						phase > 1 ? 
+							stageArea[phase - 2].classList.remove('active') : null
+						break;
+					case false:
+						for(i = 0 ; i < stageArea.length; i++){ stageArea[i].classList.remove('active') }
+						break;
+				}	phase < 4 ? stageArea[phase - 1].classList.add('active') : null
 			}
 	/*	NAVEGACION	*/
 		//	Menu hamburguesa
 			menuBtn.addEventListener( 'click', () => { 
-				menuList.classList.toggle('open')
-				menuList.classList.contains('open')? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;'
+				menuList.classList.toggle('open') ? menuBtn.innerHTML = '&times;' : menuBtn.innerHTML = '&equiv;'
 			}	)
 		//	Item Activo
 			menuItem.forEach( (item, I) => item.addEventListener(
 				'click', () => {
 					for(i = 1 ; i < menuItem.length; i++){
-						i === I ? menuItem[i].classList.toggle('active') : 
-							menuItem[i].classList.remove('active')
+						i === I ? menuItem[i].classList.toggle('active') : menuItem[i].classList.remove('active')
 			}	}	)	)
 		//	Registro de Modo
 			modeLabel.addEventListener( 'click', () => {
 				window.localStorage.setItem('mode', modeItem.checked )
-			}	)
-	//	Elementos Populares
-		window.addEventListener( 'load', () => { 
-			localStorage.getItem('mode') == 'false' ? 
-				modeItem.checked = true : modeItem.checked = false
-			url = `${trendURL}?api_key=${apiKey}&limit=${limit}&rating=g`
-			showPhase(1)
-			fetchAPI(url, trendArea, showGifs)
-		}	)
+			}	)	
 	/*	ALMACEN DE DATOS	*/
+		//	Elementos Populares
+			window.addEventListener( 'load', () => { 
+				localStorage.getItem('mode') == 'false' ? 
+					modeItem.checked = true : modeItem.checked = false
+				url = `${trendURL}?api_key=${apiKey}&limit=${limit}&rating=g`
+				showPhase(1)
+				fetchAPI(url, trendArea, showGifs)
+			}	)
 		// 	Elementos Guardados
-			const loadStorage = () =>{
-				favArea.innerHTML = ``
-				gifArea.innerHTML = ``
-				//	Analisis de Storage
+			const loadStorage = () => {
+				favArea.innerHTML = ``;	gifArea.innerHTML = ``
+			//	Analisis de Storage
 				if(localStorage.length != 0){
-					totalGifs = []
-					totalFavs = []
+					totalGifs = [];	totalFavs = []
 					for ( i = 0; i < localStorage.length; i++ ){  
 				  		id = localStorage.key(i)
 				  		item = JSON.parse(localStorage.getItem(id))
 				  		if (id.includes('gif_')) {
-				  			totalGifs.push(id)
-				  			gifArea.innerHTML += showGifs(item, 'gif_')
+				  			totalGifs.push(id); gifArea.innerHTML += showGifs(item, 'gif_')
 				  		}
 				  		if (id.includes('fav_')){
-				  			totalFavs.push(id)
-					  		favArea.innerHTML += showGifs(item, 'fav_')
-						}	}	} 	 
+				  			totalFavs.push(id); favArea.innerHTML += showGifs(item, 'fav_')
+				}	}	} 	 
 				totalGifs.length == 0 ? noResults(noGifs, 'gifs') : noGifs.innerHTML = ``
 				totalFavs.length == 0 ? noResults(noFavs, 'favs') : noFavs.innerHTML = ``
 				for (i = 0; i < totalFavs.length ; i ++){
 					try{ 
 						isFav = totalFavs[i].slice(4)
-						document.getElementById(isFav) ?
-							document.getElementById(isFav).querySelector('.fav').classList.add('active'): null
-					} catch(error){
-						console.log(error)
-					}	
-				}
-				userActions()
-				}
+						document.getElementById(isFav) ? document.getElementById(isFav).querySelector('.fav').classList.add('active'): null 
+					} catch(error){	console.log(error) } 
+				}	userActions()
+			}
 		//	Agregar Item
 			const addStorage = async (id, type) => {
 				const response = await fetchURL(`${idURL}gifs/${id}?api_key=${apiKey}`)
@@ -278,58 +260,47 @@
 				try{
 					notFav = id.slice(4)
 					document.getElementById(notFav) ? document.getElementById(notFav).querySelector('.fav').classList.remove('active') : null
-				} catch (error){
-					console.log(error)
-				} 
+				} catch(error){ console.log(error) } 
 				loadStorage()
 			}
 	/*	FORMULARIO	*/
 		//	Sugerencias de Busqueda 
 			textField.addEventListener( 'input', () => {
 				if(textField.checkValidity()){
-					termino = textField.value
+					dataList.innerHTML = ``; termino = textField.value
 					url = `${tagsURL+termino}?api_key=${apiKey}&lang=es`
-					dataList.innerHTML = ``
 					fetchAPI(url, dataList, showOptions)
 			}	}	)
 			dataList.addEventListener( 'click', () => {
 				textField.value = dataList.value 
-				frmSearch.querySelector('button').click()
-				textField.focus()
+				frmSearch.querySelector('button').click(); textField.focus()
 			}	)
 		//	Resultados Busqueda
 			frmSearch.addEventListener( 'submit', (e) => {
-				e.preventDefault()
-				limit = 12
-				offset = 0
-				termino = textField.value
+				e.preventDefault();	gifsArea.innerHTML = ``
+				limit = 12;	offset = 0;	termino = textField.value
 				url = `${searchURL}?api_key=${apiKey}&q=${termino}&limit=${limit}&offset=${offset}&rating=g&lang=es`
-				gifsArea.innerHTML = ``
-				fetchAPI(url, gifsArea, showGifs)
 				titleArea.innerHTML = termino
+				fetchAPI(url, gifsArea, showGifs)
 			}	)
 		//	Cargar Paginas
 			pageArea.onsubmit = (e) => {
-				e.preventDefault()
-				offset += 12
+				e.preventDefault();	offset += 12
 				url = `${searchURL}?api_key=${apiKey}&q=${termino}&limit=${limit}&offset=${offset}&rating=g&lang=es`
 				fetchAPI(url, gifsArea, showGifs)
 			}
 	/*	CREAR GIFS	*/
 		// 	Proceso de Grabacion
 			recAgain.addEventListener( 'click', () => {
-				phase = 1
-				setPhase(false)
+				phase = 1; setPhase(false)
 			}	)
 			gifBtn.addEventListener( 'click', () => {
-				phase < 4 ? phase++ : phase = 1
-				setPhase(true)
+				phase < 4 ? phase++ : phase = 1; setPhase(true)
 			}	)
 		// 	Consultar Webcam
 			const startGif = async() => {
 				const stream = await navigator.mediaDevices.getUserMedia({
-					audio: false,
-					video: { max: 480 }
+					audio: false, video: { max: 480 }
 				}	)
 				gifMedia.srcObject = stream;
 				await gifMedia.play()
@@ -372,15 +343,12 @@
 				videoRecorder.stream.getTracks().forEach(t => t.stop())
 				gifMedia.srcObject = null;
 			// 	Reiniciar Parametros
-				await videoRecorder.reset()
-				await videoRecorder.destroy()
-				await gifRecorder.reset()
-				await gifRecorder.destroy()
+				await videoRecorder.reset(); await videoRecorder.destroy()
+				await gifRecorder.reset(); await gifRecorder.destroy()
 			//	Limpieza de contenido
 				gifSrc = await gifBlob;
 				gifView.src = URL.createObjectURL(await gifBlob)
-				gifRecorder = null;
-				videoRecorder = null;
+				gifRecorder = null;	videoRecorder = null
 			}
 		//	Subir Grabacion
 			const uploadGif = async() => {
@@ -388,17 +356,12 @@
 				showPhase(3)
 				const formData = new FormData()
 				formData.append("file", gifSrc, "api_Gifo.gif")
-					const params = {
-						method: "POST",
-						body: formData,
-						json: true
-				};
+					const params = { method: "POST", body: formData, json: true }
 			// 	Consulta URL Subida
 				const response = await fetchURL(`${uploadURL}?api_key=${apiKey}`, params)	
 				showPhase(4)
-				console.log(await response)
-				id = response.data.id
-				item = response.data
+				alert(await response)
+				id = response.data.id; item = response.data
 				addStorage(id, 'gif_', true)
 				recMsg.id = id;
 				gifMedia.classList.toggle('show')
@@ -413,25 +376,23 @@
 /* 	ACCIONES DE USUARIO */
 	//	Botones de Accion
 		const userActions = () => {	
-			//	Consulta Elementos
-				likeHit = document.querySelectorAll('.fav')
+		//	Consulta Elementos
+				likeHit = document.querySelectorAll('.fav'); 
 				binHit	= document.querySelectorAll('.trash')
 				linkHit = document.querySelector('.link')
 				downHit = document.querySelectorAll('.download')
 				openHit = document.querySelectorAll('.max')	
-			//	Add / Remove Like
+		//	Add | Remove Like
 				likeHit.forEach( like => like.onclick = () => { 
 					keyNodes(like)
-					box.classList.contains('favorite') ?
-						remStorage(box.id) : like.classList.toggle('active') ?
-						addStorage(box.id, 'fav_') : remStorage('fav_' + box.id)
+					box.classList.contains('favorite') ? remStorage(box.id) : like.classList.toggle('active') ?	addStorage(box.id, 'fav_') : remStorage('fav_' + box.id)
 				}	)
-			//	Remove Gif
+		//	Remove Gif
 				binHit.forEach( bin => bin.onclick = () => {
 					keyNodes(bin)
 					remStorage(box.id)
 				}	)
-			//	Gif URL
+		//	Copy Gif URL
 				if(linkHit){
 					linkHit.onclick = () => {
 					keyNodes(linkHit)
@@ -444,7 +405,7 @@
 					document.body.removeChild(link)
 					}
 				}
-			//	Download Gif
+		//	Download Gif
 				downHit.forEach( down => down.onclick = () => {
 					keyNodes(down)
 					linkURL = `${box.classList.contains('result') ? box.id : box.id.slice(4)}`
@@ -460,15 +421,13 @@
 					document.body.removeChild(link)
 					} 	)	)
 				}	)
-			//	Open Gif	
-				openHit.forEach( open  => open.onclick = () => {	
-					keyNodes(open)
-					box.classList.toggle('active')
-					open.classList.toggle('max')
-					open.classList.toggle('close')
-					prevItem.classList.toggle('selected')
-					nextItem.classList.toggle('selected')
-				}	)	
+		//	Open Gif	
+			openHit.forEach( open  => open.onclick = () => {	
+				keyNodes(open)
+				box.classList.toggle('active')
+				open.classList.toggle('max'); open.classList.toggle('close')
+				prevItem.classList.toggle('selected'); nextItem.classList.toggle('selected')
+			}	)	
 		}
 	//	Contenedores
 		const keyNodes = (param) => { 
@@ -480,37 +439,26 @@
 		prevItem.addEventListener('click', () => changeItem(prevItem,false))
 	//	Intercambio de clases
 		const changeItem = (item, type) => {
-			//	Consulta y Definicion de Accion
-				nowItem = document.querySelector('article.active')
-				nowItem ? null : 
-					document.querySelector('article.selected') ? 
-						nowItem = document.querySelector('article.selected') :
-						nowItem = document.querySelector('section:last-child article')
-				firstItem = nowItem.parentNode.firstElementChild
-				lastItem  = nowItem.parentNode.lastElementChild
-			//	Siguiente Elemento
-				switch(type){
-					case true:
-						nowItem == lastItem ? 
-							newItem = firstItem : 
-							newItem = nowItem.nextElementSibling;
-					break;
-					case false:
-						nowItem == firstItem ? 
-							newItem = lastItem : 
-							newItem = nowItem.previousElementSibling;
-					break;
-				}	
-			//	Minimizar y Maximizar
-				if(item.classList.contains('selected')){
-					nowItem.querySelector('.close').classList.replace('close','max')
-					newItem.querySelector('.max').classList.replace('max','close')
-					nowItem.classList.remove('active')
-					newItem.classList.add('active')
-				} else {
-					nowItem.classList.contains('selected') ?
-						newItem.classList.toggle('selected') : nowItem.classList.toggle('selected')
-					newItem.classList.contains('selected') ?
-						nowItem.classList.remove('selected') : null
-				}
+		//	Consulta y Definicion de Accion
+			(nowItem = document.querySelector('article.active')) ? null : (nowItem = document.querySelector('article.selected')) ? null : (nowItem = document.querySelector('section:last-child article'))
+			firstItem = nowItem.parentNode.firstElementChild; lastItem  = nowItem.parentNode.lastElementChild
+		//	Siguiente Elemento
+			switch(type){
+				case true:
+					nowItem == lastItem ? newItem = firstItem : newItem = nowItem.nextElementSibling;
+				break;
+				case false:
+					nowItem == firstItem ? newItem = lastItem : newItem = nowItem.previousElementSibling;
+				break;
+			}	
+		//	Minimizar y Maximizar
+			if(item.classList.contains('selected')){
+				nowItem.querySelector('.close').classList.replace('close','max')
+				newItem.querySelector('.max').classList.replace('max','close')
+				nowItem.classList.remove('active')
+				newItem.classList.add('active')
+			} else {
+				nowItem.classList.contains('selected') ? newItem.classList.toggle('selected') : nowItem.classList.toggle('selected')
+				newItem.classList.contains('selected') ? nowItem.classList.remove('selected') : null
+			}
 		}

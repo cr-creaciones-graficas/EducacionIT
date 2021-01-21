@@ -509,8 +509,11 @@ nav .open {
 }
 #header form button {
   position: absolute;
+  top: 0.2rem;
+  right: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
   z-index: 1;
-  right: 1rem;
   outline: none;
 }
 #header form label {
