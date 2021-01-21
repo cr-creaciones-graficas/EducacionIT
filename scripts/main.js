@@ -360,7 +360,6 @@
 			// 	Consulta URL Subida
 				const response = await fetchURL(`${uploadURL}?api_key=${apiKey}`, params)	
 				showPhase(4)
-				alert(await response)
 				id = response.data.id; item = response.data
 				addStorage(id, 'gif_', true)
 				recMsg.id = id;
