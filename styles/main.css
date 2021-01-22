@@ -771,7 +771,7 @@ main #crear_gifo article .message .hidden {
   bottom: 0;
   right: unset;
   z-index: 1;
-  width: 100%;
+  width: 100% !important;
 }
 main #crear_gifo article .message .hidden .social {
   text-align: right;
@@ -780,6 +780,7 @@ main #crear_gifo article .message .hidden .social .icon {
   margin: 0.25rem;
   border: 0;
   padding: 0;
+  width: 2rem;
   border-radius: 0.25rem;
 }
 main #crear_gifo:target {
